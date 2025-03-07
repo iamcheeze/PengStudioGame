@@ -9,10 +9,14 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 movement;
     private bool isGrounded;
+    private float hangtimeDuration = 0.5f;
+    public float hangtimeGravityScale = 0.5f;
+    public float normalGravityScale;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        normalGravityScale = rb.gravityScale;
     }
 
     void Update()
@@ -24,11 +28,18 @@ public class PlayerMovement : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
             isGrounded = false;
         }
+       
+        if (rb.velocity.y < 0)
+        {
+            rb.gravityScale = hangtimeGravityScale;
+         
+        } else { 
+        rb.gravityScale = normalGravityScale;
+        }
     }
-
     void FixedUpdate()
     {
         // Apply movement
