@@ -9,8 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 movement;
     private bool isGrounded;
-    private float hangtimeDuration = 0.5f;
-    public float hangtimeGravityScale = 0.5f;
+    public float hangtimeGravityScale = 4f;
     public float normalGravityScale;
 
     void Start()
@@ -36,7 +35,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = hangtimeGravityScale;
          
-        } else { 
+        } 
+        else 
+        { 
         rb.gravityScale = normalGravityScale;
         }
     }
@@ -53,5 +54,5 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-    }
+    } 
 }
