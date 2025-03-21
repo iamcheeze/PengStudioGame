@@ -7,13 +7,31 @@ public class GunLogic : MonoBehaviour
     public KeyCode input;
     public GameObject bullet;
     public Transform spawnpoint;
+    public float bulletSpeed = 10f;
+    public float shootDelay = 0.5f;
+    public float bulletLifeTime = 5f;
+
+    private float timeSinceLastShot = 0f;
 
     //Reference for bullet spawning location
     void SpawnBullet()
     {
         if (bullet != null && spawnpoint != null)
         {
-            Instantiate(bullet, spawnpoint.position, spawnpoint.rotation);
+            GameObject spawnedBullet = Instantiate(bullet, spawnpoint.position, spawnpoint.rotation);
+
+            Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
+
+            if (rb != null) 
+            {
+                // Add velocity to the bullet in the direction the spawnpoint is facing
+                rb.velocity = spawnpoint.right * bulletSpeed;
+            }
+            else
+            {
+                Debug.LogWarning("Rigidbody2D not found on bullet.");
+            }
+            Destroy(spawnedBullet, bulletLifeTime);
         }
         else
         {
@@ -24,10 +42,12 @@ public class GunLogic : MonoBehaviour
     // Shoots the bullet on input
     void Update()
     {
-        if (Input.GetKeyDown(input))
+        timeSinceLastShot += Time.deltaTime;
+        if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
         {
             SpawnBullet();
             Debug.Log("Bullet Spawned Sucessfully.");
+            timeSinceLastShot = 0f;
         }
     }
 }
