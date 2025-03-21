@@ -98,5 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circlePrefab: {fileID: 6940029995062311091, guid: 2d9cc03e533c84e2c846ae4a73bd718d, type: 3}
-  spawnInterval: 2
+  waveText: {fileID: 79492332292324028, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
+  spawnInterval: 1
   speed: 3
