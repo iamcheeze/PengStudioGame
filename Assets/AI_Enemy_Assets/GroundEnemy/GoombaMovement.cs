@@ -6,7 +6,6 @@ public class GoombaMovement : MonoBehaviour
 {
     public float speed = 3f;
     public float moveDistance = 10f;
-    private Vector2 currentPosition;
     private Vector2 movement = Vector2.right;
 
     public void OnCollisionEnter2D(Collision2D collision)
@@ -21,7 +20,6 @@ public class GoombaMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(movement * speed * Time.deltaTime);
-        currentPosition = transform.position;
     }
 
     
