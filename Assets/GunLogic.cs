@@ -46,13 +46,13 @@ public class GunLogic : MonoBehaviour
         if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
         {
             SpawnBullet();
-            Debug.Log("Bullet Spawned Sucessfully.");
+            Debug.Log("Bullet Spawned Successfully.");
             timeSinceLastShot = 0f;
         }
         if (Input.GetKey(input) && timeSinceLastShot >= shootDelay)
         {
             SpawnBullet();
-            Debug.Log("Continous Bullet 1x Spawned Sucessfully.");
+            Debug.Log("Continuous Bullet 1x Spawned Successfully.");
             timeSinceLastShot = 0f;
         }
     }

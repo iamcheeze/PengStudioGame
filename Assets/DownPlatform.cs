@@ -7,13 +7,6 @@ public class DownPlatform : MonoBehaviour
     public List<BoxCollider2D> bx2d = new List<BoxCollider2D>();
     public float time = 0.5f;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
     void Update()
     {
