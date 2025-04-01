@@ -212,7 +212,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -465,7 +465,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 31
-  m_Sprite: {fileID: 21300000, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
   m_Color: {r: 0.3886792, g: 0.3886792, b: 0.3886792, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   - {fileID: 66675938}
   bulletSpeed: 20
   shootDelay: 0.5
-  bulletLifeTime: 3
+  bulletLifeTime: 2
 --- !u!212 &1641534297
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1211,7 +1211,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 31
-  m_Sprite: {fileID: 21300000, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
   m_Color: {r: 0.6754716, g: 0.6754716, b: 0.6754716, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1239,7 +1239,8 @@ MonoBehaviour:
   spawnpoint: {fileID: 1546331430}
   bulletSpeed: 20
   shootDelay: 0.13
-  bulletLifeTime: 3
+  bulletLifeTime: 2
+--- !u!114 &1641534299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1254,7 +1255,7 @@ MonoBehaviour:
   gunLogic: {fileID: 1641534298}
   shotgunLogic: {fileID: 1641534296}
   spriteRenderer: {fileID: 1641534297}
-  gunSprite: {fileID: 21300000, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
+  gunSprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
   shotgunSprite: {fileID: 7482667652216324306, guid: 0d6a45042624f488d96c992ebe85f867, type: 3}
 --- !u!1 &1672521135
 GameObject:
@@ -1416,6 +1417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9083398682333187702, guid: 682c43f5e25ed794d9408b52b9504ab8, type: 3}
+  shotgunBulletPrefab: {fileID: 4207112278216975147, guid: af7c647a19edc254caed6be6fe137825, type: 3}
 --- !u!4 &1837146974
 Transform:
   m_ObjectHideFlags: 0
