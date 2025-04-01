@@ -6,6 +6,9 @@ public class SwitchingWeapon : MonoBehaviour
 {
     public GunLogic gunLogic;  // Reference to the GunLogic script
     public ShotgunLogic shotgunLogic;  // Reference to the ShotgunLogic script
+    public SpriteRenderer spriteRenderer;  // Reference to the SpriteRenderer component
+    public Sprite gunSprite;
+    public Sprite shotgunSprite;
 
     private void Update()
     {
@@ -35,6 +38,11 @@ public class SwitchingWeapon : MonoBehaviour
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
         }
 
+        if (spriteRenderer != null && gunSprite != null)
+        {
+            spriteRenderer.sprite = gunSprite; // Sprite switch
+        }
+
         Debug.Log("Switched to GunLogic.");
     }
 
@@ -51,7 +59,10 @@ public class SwitchingWeapon : MonoBehaviour
             gunLogic.enabled = false;  // Disable the GunLogic script
         }
 
+        if (spriteRenderer != null && shotgunSprite != null)
+        {
+            spriteRenderer.sprite = shotgunSprite; // Sprite switch
+        }
         Debug.Log("Switched to ShotgunLogic.");
     }
 }
-

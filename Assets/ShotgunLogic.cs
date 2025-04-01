@@ -22,16 +22,22 @@ public class ShotgunLogic : MonoBehaviour
         if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
         {
             FireShotgun();
-            timeSinceLastShot = 0f; // Time reset, may remove delay if asked
+            timeSinceLastShot = 0f; // Time reset
         }
-    }
-    void FireShotgun()
+    } 
+void FireShotgun()
+{
+    if (firepoints.Count > 0)
     {
-        if (bullet != null && firepoints.Count > 0)
+        foreach (Transform firepoint in firepoints)
         {
-            foreach (Transform firepoint in firepoints)
+            GameObject spawnedBullet = ObjectPool.instance.GetPooledShotgunBullet();
+
+            if (spawnedBullet != null)
             {
-                GameObject spawnedBullet = Instantiate(bullet, firepoint.position, firepoint.rotation);
+                spawnedBullet.transform.position = firepoint.position;
+                spawnedBullet.transform.rotation = firepoint.rotation;
+                spawnedBullet.SetActive(true);
 
                 Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
     
@@ -44,14 +50,56 @@ public class ShotgunLogic : MonoBehaviour
                     Debug.LogWarning("Rigidbody2D not found on bullet.");
                 }
 
-                Destroy(spawnedBullet, bulletLifeTime);
+                StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
             }
-
-            Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
+            else
+            {
+                Debug.LogWarning("No pooled shotgun bullet available.");
+            }
         }
-        else
+
+        Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
+    }
+    else
+    {
+        Debug.LogError("No firepoints found.");
+    }
+        IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
         {
-            Debug.LogError("Bullet is not assigned or no firepoints found.");
+        yield return new WaitForSeconds(bulletLifeTime);
+        if (bullet != null)
+        {
+            bullet.SetActive(false); 
         }
     }
+}
+    /*  void FireShotgun()
+      {
+          if (bullet != null && firepoints.Count > 0)
+          {
+              foreach (Transform firepoint in firepoints)
+              {
+                  GameObject spawnedBullet = Instantiate(bullet, firepoint.position, firepoint.rotation);
+
+                  Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
+
+                  if (rb != null)
+                  {
+                      rb.velocity = firepoint.right * bulletSpeed; // Fire in the firepoint's direction
+                  }
+                  else
+                  {
+                      Debug.LogWarning("Rigidbody2D not found on bullet.");
+                  }
+
+                  Destroy(spawnedBullet, bulletLifeTime);
+              }
+
+              Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
+          }
+          else
+          {
+              Debug.LogError("Bullet is not assigned or no firepoints found.");
+          }
+      } */
 }

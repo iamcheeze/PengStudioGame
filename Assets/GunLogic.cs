@@ -16,9 +16,13 @@ public class GunLogic : MonoBehaviour
     //Reference for bullet spawning location
     void SpawnBullet()
     {
+        GameObject spawnedBullet = ObjectPool.instance.GetPooledBullet();
         if (bullet != null && spawnpoint != null)
         {
-            GameObject spawnedBullet = Instantiate(bullet, spawnpoint.position, spawnpoint.rotation);
+            // Set the bullet's position and rotation to the spawnpoint
+            spawnedBullet.transform.position = spawnpoint.position;
+            spawnedBullet.transform.rotation = spawnpoint.rotation;
+            spawnedBullet.SetActive(true);
 
             Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
 
@@ -31,11 +35,18 @@ public class GunLogic : MonoBehaviour
             {
                 Debug.LogWarning("Rigidbody2D not found on bullet.");
             }
-            Destroy(spawnedBullet, bulletLifeTime);
+            StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
         }
-        else
+
+        // Disable bullet
+        IEnumerator DisableBullet(GameObject bullet, float delay)
         {
-            Debug.Log("Bullet or spawnpoint is not assigned.");
+            yield return new WaitForSeconds(delay);
+
+            if (spawnedBullet != null)
+            {
+             spawnedBullet.SetActive(false); 
+            }
         }
     }
 
