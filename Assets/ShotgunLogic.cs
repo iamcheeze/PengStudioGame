@@ -5,7 +5,6 @@ using UnityEngine;
 public class ShotgunLogic : MonoBehaviour
 {
     public KeyCode input;
-    public GameObject bullet;
     public List<Transform> firepoints;
     public float bulletSpeed = 10f;
     public float shootDelay = 0.5f;
@@ -27,7 +26,7 @@ public class ShotgunLogic : MonoBehaviour
     } 
 void FireShotgun()
 {
-    if (firepoints.Count > 0)
+    if (firepoints.Count > 0 && ObjectPool.instance.ShotgunCanShoot())
     {
         foreach (Transform firepoint in firepoints)
         {
@@ -50,6 +49,7 @@ void FireShotgun()
                     Debug.LogWarning("Rigidbody2D not found on bullet.");
                 }
 
+                // Start coroutine
                 StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
             }
             else
@@ -57,13 +57,13 @@ void FireShotgun()
                 Debug.LogWarning("No pooled shotgun bullet available.");
             }
         }
-
+        ObjectPool.instance.UseShotgunBullet();
         Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
     }
-    else
-    {
-        Debug.LogError("No firepoints found.");
-    }
+        else
+        {
+            Debug.Log("No shotgun bullets left! Sacrifice needed.");
+        }
         IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
         {
         yield return new WaitForSeconds(bulletLifeTime);

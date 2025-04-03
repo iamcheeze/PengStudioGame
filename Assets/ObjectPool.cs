@@ -10,11 +10,13 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> pooledObjectsShotgunBullet = new List<GameObject>();
 
     private int amountToPoolBullet = 25;
-    private int amountToPoolShotgunBullet = 15;
+    private int amountToPoolShotgunBullet = 30;
 
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shotgunBulletPrefab;
-
+    
+    public int maxBullets = 0;
+    public int shotgunMaxBullets = 0;
 
     private void Awake()
     {
@@ -22,7 +24,50 @@ public class ObjectPool : MonoBehaviour
         {
             instance = this;
         }
+    } 
+    // Shotgun stuff
+    public bool ShotgunCanShoot()
+    {
+        return shotgunMaxBullets > 0;
     }
+
+    public void UseShotgunBullet()
+    {
+        if (shotgunMaxBullets > 0)
+        {
+            shotgunMaxBullets--;
+            Debug.Log("Bullet fired! Bullets remaining: " + shotgunMaxBullets);
+        }
+        else
+        {
+            Debug.LogWarning("No bullets left! Sacrifice needed.");
+        }
+    }
+  // Normal gun stuff 
+    public bool CanShoot()
+    {
+        return maxBullets > 0;
+    }
+
+    public void UseBullet()
+    {
+        if (maxBullets > 0)
+        {
+            maxBullets--;
+            Debug.Log("Bullet fired! Bullets remaining: " + maxBullets);
+        }
+        else
+        {
+            Debug.LogWarning("No bullets left! Sacrifice needed.");
+        }
+    }
+      public void Sacrifice()
+    {
+        maxBullets += 15;
+        shotgunMaxBullets +=1;
+        Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +77,7 @@ public class ObjectPool : MonoBehaviour
             obj.SetActive(false);
             pooledObjectsBullet.Add(obj);
         }
+
         for (int i = 0; i < amountToPoolShotgunBullet; i++)
         {
             GameObject obj = Instantiate(shotgunBulletPrefab);
@@ -39,6 +85,7 @@ public class ObjectPool : MonoBehaviour
             pooledObjectsShotgunBullet.Add(obj);
         }
     }
+
     public GameObject GetPooledBullet()
     {
         for (int i = 0; i < pooledObjectsBullet.Count; i++)
@@ -50,6 +97,7 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+
     public GameObject GetPooledShotgunBullet()
     {
         for (int i = 0; i < pooledObjectsShotgunBullet.Count; i++)
@@ -60,5 +108,13 @@ public class ObjectPool : MonoBehaviour
             }
         }
         return null;
+    }
+    // TEMPORARY sacrifice system so I can actually test the script out
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F)) // Change KeyCode as needed
+        {
+            Sacrifice();
+        }
     }
 }
