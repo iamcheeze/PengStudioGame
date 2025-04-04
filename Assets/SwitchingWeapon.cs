@@ -6,9 +6,11 @@ public class SwitchingWeapon : MonoBehaviour
 {
     public GunLogic gunLogic;  // Reference to the GunLogic script
     public ShotgunLogic shotgunLogic;  // Reference to the ShotgunLogic script
+    public RocketLauncherLogic rocketLauncherLogic;  // Reference to the RocketLauncher script
     public SpriteRenderer spriteRenderer;  // Reference to the SpriteRenderer component
     public Sprite gunSprite;
     public Sprite shotgunSprite;
+    public Sprite rocketLauncherSprite;
 
     private void Update()
     {
@@ -23,6 +25,11 @@ public class SwitchingWeapon : MonoBehaviour
         {
             SwitchToShotgunLogic();
         }
+        // Switch to ShotgunLogic (3 key press)
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SwitchToRocketLauncherLogic();
+        }
     }
 
     // Enable GunLogic and disable ShotgunLogic
@@ -36,6 +43,11 @@ public class SwitchingWeapon : MonoBehaviour
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+        }
+
+        if (rocketLauncherLogic != null)
+        {
+            rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
         }
 
         if (spriteRenderer != null && gunSprite != null)
@@ -59,10 +71,37 @@ public class SwitchingWeapon : MonoBehaviour
             gunLogic.enabled = false;  // Disable the GunLogic script
         }
 
+        if (rocketLauncherLogic != null)
+        {
+            rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+        }
+
         if (spriteRenderer != null && shotgunSprite != null)
         {
             spriteRenderer.sprite = shotgunSprite; // Sprite switch
         }
         Debug.Log("Switched to ShotgunLogic.");
+    }
+    void SwitchToRocketLauncherLogic()
+    {
+        if (rocketLauncherLogic != null)
+        {
+            rocketLauncherLogic.enabled = true;  // Disable the RocketLauncherLogic script
+        }
+
+        if (shotgunLogic != null)
+        {
+            shotgunLogic.enabled = false;  // Enable the ShotgunLogic script
+        }
+
+        if (gunLogic != null)
+        {
+            gunLogic.enabled = false;  // Disable the GunLogic script
+        }
+
+        if (spriteRenderer != null && rocketLauncherSprite != null)
+        {
+            spriteRenderer.sprite = rocketLauncherSprite; // Sprite switch
+        }
     }
 }

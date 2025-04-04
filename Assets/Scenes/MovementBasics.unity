@@ -1064,9 +1064,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1641534295}
   - component: {fileID: 1641534297}
-  - component: {fileID: 1641534296}
-  - component: {fileID: 1641534298}
   - component: {fileID: 1641534299}
+  - component: {fileID: 1641534298}
+  - component: {fileID: 1641534296}
+  - component: {fileID: 1641534300}
   m_Layer: 0
   m_Name: PewPew
   m_TagString: Untagged
@@ -1083,8 +1084,8 @@ Transform:
   m_GameObject: {fileID: 1641534294}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.649, y: -0.013999939, z: 0}
-  m_LocalScale: {x: 0.6125, y: 0.175, z: 1}
+  m_LocalPosition: {x: 0.88, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2102183453}
@@ -1157,7 +1158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 31
-  m_Sprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 266c1177711132744817df8753a718b2, type: 3}
   m_Color: {r: 0.6754716, g: 0.6754716, b: 0.6754716, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1175,7 +1176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641534294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 991d123d192a7ac419745e1a35fe68e3, type: 3}
   m_Name: 
@@ -1199,9 +1200,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunLogic: {fileID: 1641534298}
   shotgunLogic: {fileID: 1641534296}
+  rocketLauncherLogic: {fileID: 1641534300}
   spriteRenderer: {fileID: 1641534297}
-  gunSprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
-  shotgunSprite: {fileID: 7482667652216324306, guid: 0d6a45042624f488d96c992ebe85f867, type: 3}
+  gunSprite: {fileID: 21300000, guid: 266c1177711132744817df8753a718b2, type: 3}
+  shotgunSprite: {fileID: 21300000, guid: 4f7449890fa6ebe4db96e6f26c4c8453, type: 3}
+  rocketLauncherSprite: {fileID: -1219667303, guid: 7804e8e3dcf528940b1cd0dbf2c9ace1, type: 3}
+--- !u!114 &1641534300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641534294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2b64d7b95a2c84a967a6820f1a80e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1672521135
 GameObject:
   m_ObjectHideFlags: 0
