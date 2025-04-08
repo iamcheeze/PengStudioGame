@@ -51,9 +51,9 @@ public class GunLogic : MonoBehaviour
     }
 
     // Coroutine to disable the bullet after a delay
-    IEnumerator DisableBullet(GameObject bullet, float delay)
+    IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(bulletLifeTime);
 
         if (bullet != null)
         {

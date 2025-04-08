@@ -103,5 +103,6 @@ public class SwitchingWeapon : MonoBehaviour
         {
             spriteRenderer.sprite = rocketLauncherSprite; // Sprite switch
         }
+        Debug.Log("Switched to RocketLauncherLogic.");
     }
 }

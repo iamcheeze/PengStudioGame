@@ -8,15 +8,18 @@ public class ObjectPool : MonoBehaviour
 
     private List<GameObject> pooledObjectsBullet = new List<GameObject>();
     private List<GameObject> pooledObjectsShotgunBullet = new List<GameObject>();
+    private List<GameObject> pooledObjectsRocket = new List<GameObject>();
 
     private int amountToPoolBullet = 25;
     private int amountToPoolShotgunBullet = 30;
-
+    private int amountToPoolRocket = 5;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject shotgunBulletPrefab;
+    [SerializeField] private GameObject rocketPrefab; 
     
     public int maxBullets = 0;
     public int shotgunMaxBullets = 0;
+    public int maxRockets = 0;
 
     private void Awake()
     {
@@ -61,11 +64,30 @@ public class ObjectPool : MonoBehaviour
             Debug.LogWarning("No bullets left! Sacrifice needed.");
         }
     }
+    // Rocket Launcher stuff
+    public bool RocketCanShoot()
+    {
+        return maxRockets > 0;
+    }
+        public void UseRocket()
+    {
+        if (maxRockets > 0)
+        {
+            maxRockets--;
+            Debug.Log("Rocket fired! Rockets remaining: " + maxRockets);
+        }
+        else
+        {
+            Debug.LogWarning("No rockets left! Sacrifice needed.");
+        }
+    }
+
       public void Sacrifice()
     {
         maxBullets += 15;
-        shotgunMaxBullets +=1;
-        Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets);
+        shotgunMaxBullets += 3;
+        maxRockets += 1;
+        Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets + " Current rockets: " + maxRockets);
     }
 
     // Start is called before the first frame update
@@ -83,6 +105,12 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = Instantiate(shotgunBulletPrefab);
             obj.SetActive(false);
             pooledObjectsShotgunBullet.Add(obj);
+        }
+        for (int i = 0; i < amountToPoolRocket; i++)
+        {
+            GameObject obj = Instantiate(rocketPrefab);
+            obj.SetActive(false);
+            pooledObjectsRocket.Add(obj);
         }
     }
 
@@ -105,6 +133,18 @@ public class ObjectPool : MonoBehaviour
             if (!pooledObjectsShotgunBullet[i].activeInHierarchy)
             {
                 return pooledObjectsShotgunBullet[i];
+            }
+        }
+        return null;
+    }
+
+        public GameObject GetPooledRocket()
+    {
+        for (int i = 0; i < pooledObjectsShotgunBullet.Count; i++)
+        {
+            if (!pooledObjectsRocket[i].activeInHierarchy)
+            {
+                return pooledObjectsRocket[i];
             }
         }
         return null;

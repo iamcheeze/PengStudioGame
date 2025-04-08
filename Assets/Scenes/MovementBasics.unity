@@ -1176,7 +1176,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641534294}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 991d123d192a7ac419745e1a35fe68e3, type: 3}
   m_Name: 
@@ -1212,11 +1212,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641534294}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d2b64d7b95a2c84a967a6820f1a80e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: 323
+  spawnpoint: {fileID: 1546331430}
+  rocketSpeed: 10
+  shootDelay: 1.5
+  rocketLifeTime: 2
+  timeBeforeLaunch: 1
+  explosionPrefab: {fileID: 3284667274526901287, guid: 56f5ff2822bd24f36b32f4beea9778b3, type: 3}
 --- !u!1 &1672521135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,8 +1409,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9083398682333187702, guid: 682c43f5e25ed794d9408b52b9504ab8, type: 3}
   shotgunBulletPrefab: {fileID: 4207112278216975147, guid: af7c647a19edc254caed6be6fe137825, type: 3}
+  rocketPrefab: {fileID: 3466854990472508464, guid: 8942459d01e8d441898e5baba2b07b4b, type: 3}
   maxBullets: 0
   shotgunMaxBullets: 0
+  maxRockets: 0
 --- !u!4 &1837146974
 Transform:
   m_ObjectHideFlags: 0

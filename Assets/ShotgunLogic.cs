@@ -13,17 +13,17 @@ public class ShotgunLogic : MonoBehaviour
     private float timeSinceLastShot = 0f;
 
     // Update is called once per frame
-    void Update()
-    {
-        timeSinceLastShot += Time.deltaTime;
+void Update()
+{
+    timeSinceLastShot += Time.deltaTime;
 
-        // Delay and shotgun firing on key press
-        if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
-        {
-            FireShotgun();
-            timeSinceLastShot = 0f; // Time reset
-        }
-    } 
+    // Delay and shotgun firing on key press
+    if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
+    {
+        FireShotgun();
+        timeSinceLastShot = 0f; // Time reset
+    }
+} 
 void FireShotgun()
 {
     if (firepoints.Count > 0 && ObjectPool.instance.ShotgunCanShoot())
@@ -73,33 +73,4 @@ void FireShotgun()
         }
     }
 }
-    /*  void FireShotgun()
-      {
-          if (bullet != null && firepoints.Count > 0)
-          {
-              foreach (Transform firepoint in firepoints)
-              {
-                  GameObject spawnedBullet = Instantiate(bullet, firepoint.position, firepoint.rotation);
-
-                  Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
-
-                  if (rb != null)
-                  {
-                      rb.velocity = firepoint.right * bulletSpeed; // Fire in the firepoint's direction
-                  }
-                  else
-                  {
-                      Debug.LogWarning("Rigidbody2D not found on bullet.");
-                  }
-
-                  Destroy(spawnedBullet, bulletLifeTime);
-              }
-
-              Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
-          }
-          else
-          {
-              Debug.LogError("Bullet is not assigned or no firepoints found.");
-          }
-      } */
 }
