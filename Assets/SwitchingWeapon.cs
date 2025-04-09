@@ -6,11 +6,13 @@ public class SwitchingWeapon : MonoBehaviour
 {
     public GunLogic gunLogic;  // Reference to the GunLogic script
     public ShotgunLogic shotgunLogic;  // Reference to the ShotgunLogic script
-    public RocketLauncherLogic rocketLauncherLogic;  // Reference to the RocketLauncher script
+    public RocketLauncherLogic rocketLauncherLogic;  // Reference to the RocketLauncherLogic script
+    public TherapyCannonLogic therapyCannonLogic;  // Reference to the TherapyCannonLogic script
     public SpriteRenderer spriteRenderer;  // Reference to the SpriteRenderer component
     public Sprite gunSprite;
     public Sprite shotgunSprite;
     public Sprite rocketLauncherSprite;
+    public Sprite therapyCannonSprite;
 
     private void Update()
     {
@@ -19,7 +21,6 @@ public class SwitchingWeapon : MonoBehaviour
         {
             SwitchToGunLogic();
         }
-
         // Switch to ShotgunLogic (2 key press)
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -29,6 +30,10 @@ public class SwitchingWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchToRocketLauncherLogic();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SwitchToTherapyCannonLogic();
         }
     }
 
@@ -48,6 +53,11 @@ public class SwitchingWeapon : MonoBehaviour
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+        }
+
+        if (therapyCannonLogic != null)
+        {
+            therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
         }
 
         if (spriteRenderer != null && gunSprite != null)
@@ -76,6 +86,11 @@ public class SwitchingWeapon : MonoBehaviour
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
         }
 
+        if (therapyCannonLogic != null)
+        {
+            therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+        }
+
         if (spriteRenderer != null && shotgunSprite != null)
         {
             spriteRenderer.sprite = shotgunSprite; // Sprite switch
@@ -86,7 +101,35 @@ public class SwitchingWeapon : MonoBehaviour
     {
         if (rocketLauncherLogic != null)
         {
-            rocketLauncherLogic.enabled = true;  // Disable the RocketLauncherLogic script
+            rocketLauncherLogic.enabled = true;  // Enable the RocketLauncherLogic script
+        }
+
+        if (shotgunLogic != null)
+        {
+            shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+        }
+
+        if (gunLogic != null)
+        {
+            gunLogic.enabled = false;  // Disable the GunLogic script
+        }
+
+        if (therapyCannonLogic != null)
+        {
+            therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+        }
+
+        if (spriteRenderer != null && rocketLauncherSprite != null)
+        {
+            spriteRenderer.sprite = rocketLauncherSprite; // Sprite switch
+        }
+        Debug.Log("Switched to RocketLauncherLogic.");
+    }
+    void SwitchToTherapyCannonLogic()
+    {
+        if (therapyCannonLogic != null)
+        {
+            therapyCannonLogic.enabled = true;  // Enable the TherapyCannonLogic script
         }
 
         if (shotgunLogic != null)
@@ -99,10 +142,15 @@ public class SwitchingWeapon : MonoBehaviour
             gunLogic.enabled = false;  // Disable the GunLogic script
         }
 
-        if (spriteRenderer != null && rocketLauncherSprite != null)
+        if (rocketLauncherLogic != null)
         {
-            spriteRenderer.sprite = rocketLauncherSprite; // Sprite switch
+            rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
         }
-        Debug.Log("Switched to RocketLauncherLogic.");
+
+        if (spriteRenderer != null && therapyCannonSprite != null)
+        {
+            spriteRenderer.sprite = therapyCannonSprite; // Sprite switch
+        }
+        Debug.Log("Switched to TherapyCannonLogic.");
     }
 }

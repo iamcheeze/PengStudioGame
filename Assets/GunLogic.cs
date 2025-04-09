@@ -12,6 +12,23 @@ public class GunLogic : MonoBehaviour
 
     private float timeSinceLastShot = 0f;
 
+    void Update()
+    {
+        timeSinceLastShot += Time.deltaTime;
+        
+        if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
+        {
+            SpawnBullet();
+            timeSinceLastShot = 0f;
+        }
+
+        if (Input.GetKey(input) && timeSinceLastShot >= shootDelay)
+        {
+            SpawnBullet();
+            timeSinceLastShot = 0f;
+        }
+    }
+    
     void SpawnBullet()
     {
         if (ObjectPool.instance.CanShoot()) 
@@ -58,23 +75,6 @@ public class GunLogic : MonoBehaviour
         if (bullet != null)
         {
             bullet.SetActive(false);
-        }
-    }
-
-    void Update()
-    {
-        timeSinceLastShot += Time.deltaTime;
-        
-        if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
-        {
-            SpawnBullet();
-            timeSinceLastShot = 0f;
-        }
-
-        if (Input.GetKey(input) && timeSinceLastShot >= shootDelay)
-        {
-            SpawnBullet();
-            timeSinceLastShot = 0f;
         }
     }
 }

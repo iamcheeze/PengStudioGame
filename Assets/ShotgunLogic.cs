@@ -13,64 +13,64 @@ public class ShotgunLogic : MonoBehaviour
     private float timeSinceLastShot = 0f;
 
     // Update is called once per frame
-void Update()
-{
-    timeSinceLastShot += Time.deltaTime;
+    void Update()
+    {
+        timeSinceLastShot += Time.deltaTime;
 
-    // Delay and shotgun firing on key press
-    if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
-    {
-        FireShotgun();
-        timeSinceLastShot = 0f; // Time reset
-    }
-} 
-void FireShotgun()
-{
-    if (firepoints.Count > 0 && ObjectPool.instance.ShotgunCanShoot())
-    {
-        foreach (Transform firepoint in firepoints)
+        // Delay and shotgun firing on key press
+        if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
         {
-            GameObject spawnedBullet = ObjectPool.instance.GetPooledShotgunBullet();
-
-            if (spawnedBullet != null)
+            FireShotgun();
+            timeSinceLastShot = 0f; // Time reset
+        }
+    } 
+    void FireShotgun()
+    {
+        if (firepoints.Count > 0 && ObjectPool.instance.ShotgunCanShoot())
+        {
+            foreach (Transform firepoint in firepoints)
             {
-                spawnedBullet.transform.position = firepoint.position;
-                spawnedBullet.transform.rotation = firepoint.rotation;
-                spawnedBullet.SetActive(true);
+                GameObject spawnedBullet = ObjectPool.instance.GetPooledShotgunBullet();
 
-                Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
-    
-                if (rb != null)
+                if (spawnedBullet != null)
                 {
-                    rb.velocity = firepoint.right * bulletSpeed; // Fire in the firepoint's direction
+                    spawnedBullet.transform.position = firepoint.position;
+                    spawnedBullet.transform.rotation = firepoint.rotation;
+                    spawnedBullet.SetActive(true);
+
+                    Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
+        
+                    if (rb != null)
+                    {
+                        rb.velocity = firepoint.right * bulletSpeed; // Fire in the firepoint's direction
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Rigidbody2D not found on bullet.");
+                    }
+
+                    // Start coroutine
+                    StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
                 }
                 else
                 {
-                    Debug.LogWarning("Rigidbody2D not found on bullet.");
+                    Debug.LogWarning("No pooled shotgun bullet available.");
                 }
-
-                // Start coroutine
-                StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
             }
+            ObjectPool.instance.UseShotgunBullet();
+            Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
+        }
             else
             {
-                Debug.LogWarning("No pooled shotgun bullet available.");
+                Debug.Log("No shotgun bullets left! Sacrifice needed.");
+            }
+            IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
+            {
+            yield return new WaitForSeconds(bulletLifeTime);
+            if (bullet != null)
+            {
+                bullet.SetActive(false); 
             }
         }
-        ObjectPool.instance.UseShotgunBullet();
-        Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
     }
-        else
-        {
-            Debug.Log("No shotgun bullets left! Sacrifice needed.");
-        }
-        IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
-        {
-        yield return new WaitForSeconds(bulletLifeTime);
-        if (bullet != null)
-        {
-            bullet.SetActive(false); 
-        }
-    }
-}
 }

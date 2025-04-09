@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 11
+  jumpForce: 11.3
   rb: {fileID: 482260195}
   movement: {x: 0, y: 0}
   hangtimeGravityScale: 4
@@ -1068,6 +1068,7 @@ GameObject:
   - component: {fileID: 1641534298}
   - component: {fileID: 1641534296}
   - component: {fileID: 1641534300}
+  - component: {fileID: 1641534301}
   m_Layer: 0
   m_Name: PewPew
   m_TagString: Untagged
@@ -1201,10 +1202,12 @@ MonoBehaviour:
   gunLogic: {fileID: 1641534298}
   shotgunLogic: {fileID: 1641534296}
   rocketLauncherLogic: {fileID: 1641534300}
+  therapyCannonLogic: {fileID: 1641534301}
   spriteRenderer: {fileID: 1641534297}
   gunSprite: {fileID: 21300000, guid: 266c1177711132744817df8753a718b2, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 4f7449890fa6ebe4db96e6f26c4c8453, type: 3}
   rocketLauncherSprite: {fileID: -1219667303, guid: 7804e8e3dcf528940b1cd0dbf2c9ace1, type: 3}
+  therapyCannonSprite: {fileID: 21300000, guid: 4a73602fbb4594ee0afc8726131c72f0, type: 3}
 --- !u!114 &1641534300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1224,6 +1227,23 @@ MonoBehaviour:
   rocketLifeTime: 2
   timeBeforeLaunch: 1
   explosionPrefab: {fileID: 3284667274526901287, guid: 56f5ff2822bd24f36b32f4beea9778b3, type: 3}
+--- !u!114 &1641534301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641534294}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490985663479e47379ba17268c1734a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: 323
+  spawnpoint: {fileID: 1546331430}
+  therapySpeed: 10
+  shootDelay: 0.2
+  therapyLifeTime: 5
 --- !u!1 &1672521135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,7 +1407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1837146974}
-  - component: {fileID: 1837146973}
+  - component: {fileID: 1837146975}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -1395,24 +1415,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1837146973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837146972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00de4c0afe18b3d42a40d1feeaf84c83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 9083398682333187702, guid: 682c43f5e25ed794d9408b52b9504ab8, type: 3}
-  shotgunBulletPrefab: {fileID: 4207112278216975147, guid: af7c647a19edc254caed6be6fe137825, type: 3}
-  rocketPrefab: {fileID: 3466854990472508464, guid: 8942459d01e8d441898e5baba2b07b4b, type: 3}
-  maxBullets: 0
-  shotgunMaxBullets: 0
-  maxRockets: 0
 --- !u!4 &1837146974
 Transform:
   m_ObjectHideFlags: 0
@@ -1428,6 +1430,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1837146975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837146972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00de4c0afe18b3d42a40d1feeaf84c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 9083398682333187702, guid: 682c43f5e25ed794d9408b52b9504ab8, type: 3}
+  shotgunBulletPrefab: {fileID: 4207112278216975147, guid: af7c647a19edc254caed6be6fe137825, type: 3}
+  rocketPrefab: {fileID: 3466854990472508464, guid: 8942459d01e8d441898e5baba2b07b4b, type: 3}
+  therapyBookPrefab: {fileID: 6744582157766841658, guid: cf1e138aa8bae42c69fe49ee8cc5947e, type: 3}
+  therapyMeditatePrefab: {fileID: 6744582157766841658, guid: d020e2c223812418a82bfc77428dad78, type: 3}
+  therapyYogaPrefab: {fileID: 6744582157766841658, guid: e6fb79cb090e44fe8b7251828fbb2070, type: 3}
+  maxBullets: 0
+  shotgunMaxBullets: 0
+  maxRockets: 0
+  maxTherapy: 0
 --- !u!1 &2102183452
 GameObject:
   m_ObjectHideFlags: 0
