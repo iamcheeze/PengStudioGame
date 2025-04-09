@@ -8,17 +8,19 @@ public class EnemySpawner : MonoBehaviour
     public float spawnInterval = 2;
     public float speed = 3;
     // Start is called before the first frame update
-    public IEnumerator SpawnEnemies(int enemiesToSpawn) 
+    public IEnumerator SpawnEnemies(int enemiesToSpawn, spawningSystem spawnerSystem)
     {
         for (int i=0; i < enemiesToSpawn; i++) 
         {
-            SpawnCircle();
+            SpawnCircle(spawnerSystem);
+            spawnerSystem.RegisterEnemy(circlePrefab);
+
             yield return new WaitForSeconds(spawnInterval);
         }
 
     }
     // Update is called once per frame
-    void SpawnCircle() 
+    void SpawnCircle(spawningSystem spawnerSystem) 
     {
         //for loop to keep spawning enemies
         GameObject circle = Instantiate(circlePrefab, transform.position, Quaternion.identity);
@@ -31,5 +33,12 @@ public class EnemySpawner : MonoBehaviour
         if (rb != null) {
             rb.velocity = new Vector2(direction * speed, 0);
         }
+
+        EnemyTracker tracker = circle.GetComponent<EnemyTracker>();
+        if (tracker != null)
+        {
+            tracker.spawnerSystem = spawnerSystem;
+        }
+
     }
 }

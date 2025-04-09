@@ -9,6 +9,13 @@ public class DeathBarrier : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            EnemyTracker tracker = other.GetComponent<EnemyTracker>();
+
+            if (tracker != null && tracker.spawnerSystem != null)
+            {
+                tracker.spawnerSystem.UnregisterEnemy(other.gameObject);
+            }
+
             Destroy(other.gameObject);
         }
     }
