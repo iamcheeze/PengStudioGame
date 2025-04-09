@@ -14,6 +14,8 @@ public class spawningSystem : MonoBehaviour
     private int enemiesToSpawn = 3; //initial enemy count
     private bool waveActive = false;
     private const int maxEnemies = 50;
+
+    public List<GameObject> activeEnemies = new List<GameObject>();
     // Update is called once per frame
 
 
@@ -30,20 +32,20 @@ public class spawningSystem : MonoBehaviour
         enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies); //maxes enemies at 50, or it just gets haywire
         
         waveNumber++; //increasing wave
-
-        if (enemySpawner != null)
-        {
-            StartCoroutine(enemySpawner.SpawnEnemies(enemiesToSpawn));
-        }
-        else
-        {
-            Debug.LogError("EnemySpawner not assigned in spawningSystem!");
-        }
-
-        Invoke(nameof(ResetWave), 10);
+        
+        StartCoroutine(enemySpawner.SpawnEnemies(enemiesToSpawn, this));
     }
 
-    void ResetWave() {
-        waveActive = false;
+    public void RegisterEnemy(GameObject enemy)
+    {
+        activeEnemies.Add(enemy);
+    }
+
+    public void UnregisterEnemy(GameObject enemy) {
+        activeEnemies.Remove(enemy);
+
+        if (activeEnemies.Count == 0) {
+            waveActive = false;
+        }
     }
 }
