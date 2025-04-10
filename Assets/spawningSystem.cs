@@ -11,41 +11,54 @@ public class spawningSystem : MonoBehaviour
     public TextMeshProUGUI waveText;
 
     private int waveNumber = 1;
-    private int enemiesToSpawn = 3; //initial enemy count
+    private int enemiesToSpawn = 3;
     private bool waveActive = false;
     private const int maxEnemies = 50;
 
-    public List<GameObject> activeEnemies = new List<GameObject>();
-    // Update is called once per frame
+    public List<GameObject> aliveEnemies = new List<GameObject>();
 
+    private void Awake() {
+        if (enemySpawner != null) {
+            enemySpawner.spawningSystem = this;
+        }
+    }
 
     private void Update() {
-        if (waveActive == false) {
+        //starts wave if one isnt running and no enemies are alive according to list
+        if (waveActive == false && aliveEnemies.Count == 0) {
             StartNewWave();
         }
     }
 
     void StartNewWave() {
-        waveActive = true; //starts wave
-        waveText.text = "Wave: " + waveNumber; //wave indicator
-        enemiesToSpawn = Mathf.FloorToInt(enemiesToSpawn * 1.5f); //rounds down and multiplies enemy numbers per wave
-        enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies); //maxes enemies at 50, or it just gets haywire
-        
-        waveNumber++; //increasing wave
-        
-        StartCoroutine(enemySpawner.SpawnEnemies(enemiesToSpawn, this));
+        waveActive = true;
+        waveText.text = "Wave: " + waveNumber;
+
+        enemiesToSpawn = Mathf.FloorToInt(enemiesToSpawn * 1.5f);
+        enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies);
+        waveNumber++;
+
+        aliveEnemies.Clear(); //clears enemies once wave starts from list
+
+        if (enemySpawner != null) {
+            StartCoroutine(enemySpawner.SpawnEnemies(enemiesToSpawn));
+        }
+            
+        StartCoroutine(WaitForWaveToComplete());
     }
 
-    public void RegisterEnemy(GameObject enemy)
-    {
-        activeEnemies.Add(enemy);
+    public void RegisterEnemy(GameObject enemy) {
+        aliveEnemies.Add(enemy);
     }
 
     public void UnregisterEnemy(GameObject enemy) {
-        activeEnemies.Remove(enemy);
+        aliveEnemies.Remove(enemy);
+    }
 
-        if (activeEnemies.Count == 0) {
-            waveActive = false;
-        }
+//waits until all enemies are gone before allowing the next wave
+    IEnumerator WaitForWaveToComplete() {
+        
+        yield return new WaitUntil(() => aliveEnemies.Count == 0);
+        waveActive = false;
     }
 }

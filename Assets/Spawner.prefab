@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: -2180105141905519582}
   waveText: {fileID: 79492332292324028, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
+  aliveEnemies: []
 --- !u!114 &-2180105141905519582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566f00a417cd74d3d8fc3b59bd10a911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circlePrefab: {fileID: 6940029995062311091, guid: 2d9cc03e533c84e2c846ae4a73bd718d, type: 3}
+  circlePrefab: {fileID: 2234260082849556833, guid: 2d9cc03e533c84e2c846ae4a73bd718d, type: 3}
   spawnInterval: 1
   speed: 3
+  spawningSystem: {fileID: 3895800209243345742}

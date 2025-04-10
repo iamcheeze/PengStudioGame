@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class DeathBarrier : MonoBehaviour
 {
-    // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            EnemyTracker tracker = other.GetComponent<EnemyTracker>();
-
-            if (tracker != null && tracker.spawnerSystem != null)
-            {
-                tracker.spawnerSystem.UnregisterEnemy(other.gameObject);
-            }
+            spawningSystem system = FindObjectOfType<spawningSystem>(); //find the system
+            system.UnregisterEnemy(other.gameObject); //remove from list
 
             Destroy(other.gameObject);
         }
     }
-
-    // Update is called once per frame
 }
