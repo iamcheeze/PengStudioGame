@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9093029728824886223}
   - component: {fileID: 127154983288859887}
-  - component: {fileID: 3895800209243345742}
   - component: {fileID: -2180105141905519582}
   m_Layer: 0
   m_Name: Spawner
@@ -86,21 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3895800209243345742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2343276531628947551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 125f33d7403a54f248c9109ccd43a8de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawner: {fileID: -2180105141905519582}
-  waveText: {fileID: 79492332292324028, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
-  aliveEnemies: []
 --- !u!114 &-2180105141905519582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,4 +100,4 @@ MonoBehaviour:
   circlePrefab: {fileID: 2234260082849556833, guid: 2d9cc03e533c84e2c846ae4a73bd718d, type: 3}
   spawnInterval: 1
   speed: 3
-  spawningSystem: {fileID: 3895800209243345742}
+  spawningSystem: {fileID: 0}
