@@ -7,15 +7,9 @@ TagManager:
   - Barrier
   - Ground
   - GoombaAI
-<<<<<<< HEAD
   - Floating Barrier
-=======
   - Enemy
-<<<<<<< Updated upstream
->>>>>>> 68263d4084ec73339f9bb29ff070a02868e72a7b
-=======
   - BulletType
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
