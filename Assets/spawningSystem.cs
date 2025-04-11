@@ -16,7 +16,6 @@ public class spawningSystem : MonoBehaviour
     private const int maxEnemies = 50;
 
     public List<GameObject> aliveEnemies = new List<GameObject>();
-    public List<EnemySpawner> EnemySpawners;
 
     private void Awake() {
         if (enemySpawner != null) {
@@ -39,13 +38,12 @@ public class spawningSystem : MonoBehaviour
         enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies);
         waveNumber++;
 
-        aliveEnemies.Clear();
+        aliveEnemies.Clear(); //clears enemies once wave starts from list
 
-        foreach (var spawner in EnemySpawners) {
-            spawner.spawningSystem = this; //ensure they reference the system
-            StartCoroutine(spawner.SpawnEnemies(enemiesToSpawn));
+        if (enemySpawner != null) {
+            StartCoroutine(enemySpawner.SpawnEnemies(enemiesToSpawn));
         }
-
+            
         StartCoroutine(WaitForWaveToComplete());
     }
 
