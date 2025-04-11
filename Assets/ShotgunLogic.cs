@@ -58,7 +58,7 @@ public class ShotgunLogic : MonoBehaviour
                 }
             }
             ObjectPool.instance.UseShotgunBullet();
-            Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints.");
+            // Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints."); 
         }
             else
             {

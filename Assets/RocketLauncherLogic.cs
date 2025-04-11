@@ -10,6 +10,8 @@ public class RocketLauncherLogic : MonoBehaviour
     public float shootDelay = 2f;
     public float rocketLifeTime = 5f;
     public float timeBeforeLaunch = 1f;
+    public float explosionRadius = 2f;
+    public int explosionDamage = 50;
 
     public GameObject explosionPrefab; // Explosion effect
 
@@ -87,17 +89,40 @@ public class RocketLauncherLogic : MonoBehaviour
 
         rb.velocity = launchDirection * rocketSpeed;
     }
+    public void ExplodeAt(Vector2 position) // Exploads on Collision
+    {
+        // Explosion Logic
+        Collider2D[] hits = Physics2D.OverlapCircleAll(position, explosionRadius);
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Enemy")) 
+            {
+                EnemyCollision enemy = hit.GetComponent<EnemyCollision>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(explosionDamage);
+                }
+            }
+        }
 
+        // 🔥 Play explosion effect
+        if (explosionPrefab != null)
+        {
+            Instantiate(explosionPrefab, position, Quaternion.identity);
+        }
+    }
     IEnumerator DisableRocket(GameObject spawnedRocket, float rocketLifeTime)
     {
         yield return new WaitForSeconds(rocketLifeTime);
 
-        if (spawnedRocket != null)
+        if (spawnedRocket != null && spawnedRocket.activeSelf)
         {
-            if (explosionPrefab != null)
+            RocketBehavior behavior = spawnedRocket.GetComponent<RocketBehavior>();
+            if (behavior != null && !behavior.HasExploded())
             {
-                Instantiate(explosionPrefab, spawnedRocket.transform.position, Quaternion.identity);
+                ExplodeAt(spawnedRocket.transform.position); // or just call from RocketLauncherLogic
             }
+
             spawnedRocket.SetActive(false);
         }
     }
