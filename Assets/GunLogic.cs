@@ -5,7 +5,6 @@ using UnityEngine;
 public class GunLogic : MonoBehaviour
 {
     public KeyCode input;
-    public GameObject bullet;
     public Transform spawnpoint;
     public float bulletSpeed = 10f;
     public float shootDelay = 0.5f;
@@ -13,47 +12,69 @@ public class GunLogic : MonoBehaviour
 
     private float timeSinceLastShot = 0f;
 
-    //Reference for bullet spawning location
-    void SpawnBullet()
-    {
-        if (bullet != null && spawnpoint != null)
-        {
-            GameObject spawnedBullet = Instantiate(bullet, spawnpoint.position, spawnpoint.rotation);
-
-            Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
-
-            if (rb != null) 
-            {
-                // Add velocity to the bullet in the direction the spawnpoint is facing
-                rb.velocity = spawnpoint.right * bulletSpeed;
-            }
-            else
-            {
-                Debug.LogWarning("Rigidbody2D not found on bullet.");
-            }
-            Destroy(spawnedBullet, bulletLifeTime);
-        }
-        else
-        {
-            Debug.Log("Bullet or spawnpoint is not assigned.");
-        }
-    }
-
-    // Shoots the bullet on input
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;
+        
         if (Input.GetKeyDown(input) && timeSinceLastShot >= shootDelay)
         {
             SpawnBullet();
-            Debug.Log("Bullet Spawned Sucessfully.");
             timeSinceLastShot = 0f;
         }
+
         if (Input.GetKey(input) && timeSinceLastShot >= shootDelay)
         {
             SpawnBullet();
-            Debug.Log("Continous Bullet 1x Spawned Sucessfully.");
             timeSinceLastShot = 0f;
+        }
+    }
+    
+    void SpawnBullet()
+    {
+        if (ObjectPool.instance.CanShoot()) 
+        {
+            GameObject spawnedBullet = ObjectPool.instance.GetPooledBullet();
+
+            if (spawnedBullet != null && spawnpoint != null)
+            {
+                spawnedBullet.transform.position = spawnpoint.position;
+                spawnedBullet.transform.rotation = spawnpoint.rotation;
+                spawnedBullet.SetActive(true);
+
+                Rigidbody2D rb = spawnedBullet.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = spawnpoint.right * bulletSpeed;
+                }
+                else
+                {
+                    Debug.LogWarning("Rigidbody2D not found on bullet.");
+                }
+
+                ObjectPool.instance.UseBullet();
+
+                // Start coroutine
+                StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
+            }
+            else
+            {
+                Debug.LogWarning("No available bullets in the pool!");
+            }
+        }
+        else
+        {
+            Debug.Log("No bullets left! Sacrifice needed.");
+        }
+    }
+
+    // Coroutine to disable the bullet after a delay
+    IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
+    {
+        yield return new WaitForSeconds(bulletLifeTime);
+
+        if (bullet != null)
+        {
+            bullet.SetActive(false);
         }
     }
 }
@@ -84,4 +105,4 @@ public class GunLogic : MonoBehaviour
 //                                          ,qP`"""|"   | `\ `;   `\   `\
 //                               _        _,p"     |    |   `\`;    |    |
 //                                 "boo,._dP"       `\_  `\    `\|   `\   ;
-//                                 `"7tY~'            `\  `\    `|_   |
+//                                 `"7tY~'            `\  `\    `|_   | Ts (this) script is giving me trauma.
