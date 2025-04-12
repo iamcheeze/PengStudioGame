@@ -8,8 +8,7 @@ public class TherapyCannonLogic : MonoBehaviour
     public Transform spawnpoint;
     public float therapySpeed = 10f;
     public float shootDelay = 0.5f;
-    public float therapyLifeTime = 1f;
-
+    
     private float timeSinceLastShot = 0f;
 
     void Update()
@@ -30,7 +29,7 @@ public class TherapyCannonLogic : MonoBehaviour
     }
 void FireTherapy()
     {
-        if (ObjectPool.instance.TherapyCanShoot()) // MUST BE CHANGED: use therapy ammo check
+        if (ObjectPool.instance.TherapyCanShoot()) // Use therapy ammo check
         { 
             GameObject therapyObj = ObjectPool.instance.GetRandomTherapyObject();
 
@@ -50,8 +49,6 @@ void FireTherapy()
                     Debug.LogWarning("Rigidbody2D not found on therapy object.");
                 }
                 ObjectPool.instance.UseTherapy();
-                // Disable Therapy
-                StartCoroutine(DisableTherapyObject(therapyObj, therapyLifeTime));
             }
             else
             {
@@ -59,13 +56,4 @@ void FireTherapy()
             }
         }
     }  
-    IEnumerator DisableTherapyObject(GameObject therapyObj, float therapyLifeTime)
-    {
-        yield return new WaitForSeconds(therapyLifeTime);
-
-        if (therapyObj != null)
-        {
-            therapyObj.SetActive(false);
-        }
-    }
 } 

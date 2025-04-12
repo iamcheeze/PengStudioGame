@@ -13,8 +13,8 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> pooledObjectsTherapyMeditate = new List<GameObject>();
     private List<GameObject> pooledObjectsTherapyYoga = new List<GameObject>();
 
-    private int amountToPoolBullet = 25;
-    private int amountToPoolShotgunBullet = 30;
+    private int amountToPoolBullet = 20;
+    private int amountToPoolShotgunBullet = 20;
     private int amountToPoolRocket = 5;
     private int amountToPoolTherapyBook = 10;
     private int amountToPoolTherapyMeditate = 10;

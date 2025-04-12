@@ -8,7 +8,6 @@ public class GunLogic : MonoBehaviour
     public Transform spawnpoint;
     public float bulletSpeed = 10f;
     public float shootDelay = 0.5f;
-    public float bulletLifeTime = 5f;
 
     private float timeSinceLastShot = 0f;
 
@@ -52,9 +51,6 @@ public class GunLogic : MonoBehaviour
                 }
 
                 ObjectPool.instance.UseBullet();
-
-                // Start coroutine
-                StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
             }
             else
             {
@@ -64,17 +60,6 @@ public class GunLogic : MonoBehaviour
         else
         {
             Debug.Log("No bullets left! Sacrifice needed.");
-        }
-    }
-
-    // Coroutine to disable the bullet after a delay
-    IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
-    {
-        yield return new WaitForSeconds(bulletLifeTime);
-
-        if (bullet != null)
-        {
-            bullet.SetActive(false);
         }
     }
 }

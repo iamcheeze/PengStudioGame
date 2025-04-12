@@ -8,7 +8,6 @@ public class ShotgunLogic : MonoBehaviour
     public List<Transform> firepoints;
     public float bulletSpeed = 10f;
     public float shootDelay = 0.5f;
-    public float bulletLifeTime = 5f;
 
     private float timeSinceLastShot = 0f;
 
@@ -48,9 +47,6 @@ public class ShotgunLogic : MonoBehaviour
                     {
                         Debug.LogWarning("Rigidbody2D not found on bullet.");
                     }
-
-                    // Start coroutine
-                    StartCoroutine(DisableBullet(spawnedBullet, bulletLifeTime));
                 }
                 else
                 {
@@ -60,17 +56,9 @@ public class ShotgunLogic : MonoBehaviour
             ObjectPool.instance.UseShotgunBullet();
             // Debug.Log("Shotgun fired from " + firepoints.Count + " firepoints."); 
         }
-            else
-            {
-                Debug.Log("No shotgun bullets left! Sacrifice needed.");
-            }
-            IEnumerator DisableBullet(GameObject bullet, float bulletLifeTime)
-            {
-            yield return new WaitForSeconds(bulletLifeTime);
-            if (bullet != null)
-            {
-                bullet.SetActive(false); 
-            }
+        else
+        {
+            Debug.Log("No shotgun bullets left! Sacrifice needed.");
         }
     }
 }

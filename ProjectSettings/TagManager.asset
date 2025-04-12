@@ -20,7 +20,7 @@ TagManager:
   - IgnoreCollision
   - BulletType
   - Enemy
-  - 
+  - Disabler
   - 
   - 
   - 

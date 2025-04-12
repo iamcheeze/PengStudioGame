@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RocketBehavior : MonoBehaviour
 {
-    private RocketLauncherLogic launcher;
+    public RocketLauncherLogic launcher;
     private bool hasExploded = false;
 
     void Start()
