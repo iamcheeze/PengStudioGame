@@ -29,12 +29,15 @@ public class EnemyCollision : MonoBehaviour
 
         if (flashEffect != null)
         {
-            flashEffect.Flash();
+            float flashIntensity = Mathf.Lerp(0.2f, 1f, 1f - Mathf.Clamp01((float)currentHealth / maxHealth));
+            flashEffect.Flash(flashIntensity);
         }
 
         if (currentHealth <= 0)
         {
-        Debug.Log(gameObject.name + " has died.");
+            // To be added: Make sure the game object leaves the list
+            Destroy(gameObject);
+            Debug.Log(gameObject.name + " has died.");
         }
     }
 }

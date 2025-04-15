@@ -50,7 +50,7 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
 
         #endregion
 
-        public void Flash()
+        public void Flash(float intensity)
         {
             // If the flashRoutine is not null, then it is currently running.
             if (flashRoutine != null)
@@ -61,11 +61,17 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
             }
 
             // Start the Coroutine, and store the reference for it.
-            flashRoutine = StartCoroutine(FlashRoutine());
+            flashRoutine = StartCoroutine(FlashRoutine(intensity));
         }
 
-        private IEnumerator FlashRoutine()
+        private IEnumerator FlashRoutine(float intensity)
         {
+            // Create a temporary copy of the flash material so multiple enemies can use it at once
+            Material tempMaterial = new Material(flashMaterial);
+
+            // Set the intensity on the copied flash material
+            flashMaterial.SetFloat("_FlashIntensity", intensity);
+
             // Swap to the flashMaterial.
             spriteRenderer.material = flashMaterial;
 
@@ -77,6 +83,9 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
 
             // Set the routine to null, signaling that it's finished.
             flashRoutine = null;
+
+            // Destroy the temporary material to free up memory and prevent bugs
+            Destroy(tempMaterial);
         }
 
         #endregion
