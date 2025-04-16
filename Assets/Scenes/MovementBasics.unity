@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 66675938}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,9 +339,9 @@ GameObject:
   - component: {fileID: 482260193}
   - component: {fileID: 482260192}
   - component: {fileID: 482260191}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 636923979}
   - component: {fileID: 636923982}
   - component: {fileID: 636923981}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platform (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895115835}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1263,6 +1263,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: 2a748cf8537a049a2b8acd4e71704238, type: 2}
   duration: 0.2
+--- !u!1001 &1186971046
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4776022917926763761, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_Name
+      value: Flyer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.705975
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.010693371
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.13483144
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906957276889012151, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6edae9a52dfec4abe8994dc76dfe3825, type: 3}
 --- !u!1 &1338993435
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1332,7 @@ GameObject:
   - component: {fileID: 1338993436}
   - component: {fileID: 1338993439}
   - component: {fileID: 1338993438}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1499,7 +1556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1533603327}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1530,7 +1587,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1546331430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint (Main)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1754,7 +1811,7 @@ GameObject:
   - component: {fileID: 1641534296}
   - component: {fileID: 1641534300}
   - component: {fileID: 1641534301}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PewPew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2235,7 +2292,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2102183453}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firepoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2267,3 +2324,4 @@ SceneRoots:
   - {fileID: 1574307639}
   - {fileID: 1022794803}
   - {fileID: 1837146974}
+  - {fileID: 1186971046}
