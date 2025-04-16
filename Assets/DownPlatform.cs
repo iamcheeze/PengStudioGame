@@ -16,13 +16,15 @@ public class DownPlatform : MonoBehaviour
         }
         IEnumerator Downtime()
         {
-            // Drop Player
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), true);
-
+            for (int i = 0; i < bx2d.Count; i++)
+            {
+                bx2d[i].enabled = false;
+            }
             yield return new WaitForSeconds(time);
-
-            // Stop dropping Player
-            Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Platform"), false);
+            for (int i = 0; i < bx2d.Count; i++)
+            {
+                bx2d[i].enabled = true;
+            }
         }
     }
 }
