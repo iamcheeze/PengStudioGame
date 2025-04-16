@@ -4,26 +4,43 @@ using UnityEngine;
 
 public class DownPlatform : MonoBehaviour
 {
-    public List<BoxCollider2D> bx2d = new List<BoxCollider2D>();
-    public float time = 0.5f;
+    public float dropTime = 0.5f;
 
-    // Update is called once per frame
+    private Collider2D playerCollider;
+
+    void Start()
+    {
+        playerCollider = GetComponent<Collider2D>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            StartCoroutine(Downtime());
+            StartCoroutine(DropThrough());
         }
-        IEnumerator Downtime()
+    }
+
+    IEnumerator DropThrough()
+    {
+        // Find which colliders to disable
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, playerCollider.bounds.size, 0f);
+
+        foreach (var hit in hits) // Checking if it actually hit a platform or not
         {
-            for (int i = 0; i < bx2d.Count; i++)
+            if (hit != playerCollider && hit.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
-                bx2d[i].enabled = false;
+                Physics2D.IgnoreCollision(playerCollider, hit, true);
             }
-            yield return new WaitForSeconds(time);
-            for (int i = 0; i < bx2d.Count; i++)
+        }
+
+        yield return new WaitForSeconds(dropTime);
+
+        foreach (var hit in hits) // Allows the Player to drop but not enemies
+        {
+            if (hit != playerCollider && hit.gameObject.layer == LayerMask.NameToLayer("Platform"))
             {
-                bx2d[i].enabled = true;
+                Physics2D.IgnoreCollision(playerCollider, hit, false);
             }
         }
     }
