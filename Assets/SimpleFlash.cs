@@ -10,23 +10,33 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
 
         #region Editor Settings
 
-        [Tooltip("Material to switch to during the flash.")]
+        [Tooltip("Duration of the flash.")]
+        [SerializeField] private float duration = 0.2f;
+
+        [Tooltip("Flash color to lerp toward in shader.")]
+        [SerializeField] private Color flashColor = Color.white;
+
         [SerializeField] private Material flashMaterial;
 
-        [Tooltip("Duration of the flash.")]
-        [SerializeField] private float duration;
-
         #endregion
+
         #region Private Fields
 
         // The SpriteRenderer that should flash.
         private SpriteRenderer spriteRenderer;
-        
-        // The material that was in use, when the script started.
+
+        // The original material
         private Material originalMaterial;
 
         // The currently running coroutine.
         private Coroutine flashRoutine;
+
+        // Used to override shader properties without creating new materials.
+        private MaterialPropertyBlock propertyBlock;
+
+        // Shader property IDs
+        private static readonly int FlashColorID = Shader.PropertyToID("_FlashColor");
+        private static readonly int FlashIntensityID = Shader.PropertyToID("_FlashIntensity");
 
         #endregion
 
@@ -37,15 +47,17 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
 
         #region Unity Callbacks
 
-        void Start()
+        void Awake()
         {
             // Get the SpriteRenderer to be used,
             // alternatively you could set it from the inspector.
             spriteRenderer = GetComponent<SpriteRenderer>();
 
-            // Get the material that the SpriteRenderer uses, 
-            // so we can switch back to it after the flash ended.
-            originalMaterial = spriteRenderer.material;
+            // Set the original material
+            originalMaterial = spriteRenderer.sharedMaterial;
+
+            // Create a reusable property block
+            propertyBlock = new MaterialPropertyBlock();
         }
 
         #endregion
@@ -66,26 +78,27 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
 
         private IEnumerator FlashRoutine(float intensity)
         {
-            // Create a temporary copy of the flash material so multiple enemies can use it at once
-            Material tempMaterial = new Material(flashMaterial);
-
-            // Set the intensity on the copied flash material
-            flashMaterial.SetFloat("_FlashIntensity", intensity);
-
-            // Swap to the flashMaterial.
+            // Swap to flash material
             spriteRenderer.material = flashMaterial;
+
+            // Set the intensity and color on the property block
+            spriteRenderer.GetPropertyBlock(propertyBlock);
+            propertyBlock.SetColor(FlashColorID, flashColor);
+            propertyBlock.SetFloat(FlashIntensityID, intensity);
+            spriteRenderer.SetPropertyBlock(propertyBlock);
+
+            Debug.Log($"{gameObject.name} - Flash Intensity: {intensity}");
 
             // Pause the execution of this function for "duration" seconds.
             yield return new WaitForSeconds(duration);
 
-            // After the pause, swap back to the original material.
+            // Reset the intensity after flashing
             spriteRenderer.material = originalMaterial;
+            propertyBlock.SetFloat(FlashIntensityID, 0f);
+            spriteRenderer.SetPropertyBlock(propertyBlock);
 
             // Set the routine to null, signaling that it's finished.
             flashRoutine = null;
-
-            // Destroy the temporary material to free up memory and prevent bugs
-            Destroy(tempMaterial);
         }
 
         #endregion
