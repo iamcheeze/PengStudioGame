@@ -14,15 +14,15 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - IgnoreCollision
   - BulletType
   - Enemy
-  - Disabler
+  - PlayerBullet
   - Platform
-  - 
+  - Disabler
   - 
   - 
   - 
