@@ -6,6 +6,8 @@ public class ObjectPool : MonoBehaviour
 {
     public static ObjectPool instance;
 
+    #region Datamembers
+
     private List<GameObject> pooledObjectsBullet = new List<GameObject>();
     private List<GameObject> pooledObjectsShotgunBullet = new List<GameObject>();
     private List<GameObject> pooledObjectsRocket = new List<GameObject>();
@@ -13,8 +15,8 @@ public class ObjectPool : MonoBehaviour
     private List<GameObject> pooledObjectsTherapyMeditate = new List<GameObject>();
     private List<GameObject> pooledObjectsTherapyYoga = new List<GameObject>();
 
-    private int amountToPoolBullet = 20;
-    private int amountToPoolShotgunBullet = 20;
+    private int amountToPoolBullet = 12;
+    private int amountToPoolShotgunBullet = 17;
     private int amountToPoolRocket = 5;
     private int amountToPoolTherapyBook = 10;
     private int amountToPoolTherapyMeditate = 10;
@@ -31,6 +33,8 @@ public class ObjectPool : MonoBehaviour
     public int maxRockets = 0;
     public int maxTherapy = 0;
 
+    #endregion
+
     private void Awake()
     {
         if (instance == null)
@@ -38,7 +42,9 @@ public class ObjectPool : MonoBehaviour
             instance = this;
         }
     } 
-    // Shotgun stuff
+
+    #region Shotgun stuff 
+
     public bool ShotgunCanShoot()
     {
         return shotgunMaxBullets > 0;
@@ -56,7 +62,10 @@ public class ObjectPool : MonoBehaviour
             Debug.LogWarning("No bullets left! Sacrifice needed.");
         }
     }
-  // Normal gun stuff 
+
+    #endregion
+    #region Normal gun stuff 
+
     public bool CanShoot()
     {
         return maxBullets > 0;
@@ -74,7 +83,11 @@ public class ObjectPool : MonoBehaviour
             Debug.LogWarning("No bullets left! Sacrifice needed.");
         }
     }
-    // Rocket Launcher stuff
+
+    #endregion
+
+    #region Shotgun stuff
+
     public bool RocketCanShoot()
     {
         return maxRockets > 0;
@@ -91,7 +104,10 @@ public class ObjectPool : MonoBehaviour
             Debug.LogWarning("No rockets left! Sacrifice needed.");
         }
     }
-    // Therapy Cannon stuff
+
+    #endregion
+
+    #region Therapy stuff
     public bool TherapyCanShoot()
     {
         return (maxTherapy > 0);
@@ -129,15 +145,9 @@ public class ObjectPool : MonoBehaviour
         return null;
     }
 
-    public void Sacrifice()
-    {
-        maxBullets += 15;
-        shotgunMaxBullets += 3;
-        maxRockets += 1;
-        Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets + " Current rockets: " + maxRockets);
-    }
+    #endregion
+    #region Instantiate Bullets
 
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < amountToPoolBullet; i++)
@@ -180,6 +190,9 @@ public class ObjectPool : MonoBehaviour
         // Refill Therapy Bullets
         StartCoroutine(RefillTherapyOverTime());
     }
+
+    #endregion
+
     // Refill Therapy Bullets
     private IEnumerator RefillTherapyOverTime()
     {
@@ -193,6 +206,8 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
+
+    #region Get Pooled Objects
     public GameObject GetPooledBullet()
     {
         for (int i = 0; i < pooledObjectsBullet.Count; i++)
@@ -264,6 +279,9 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
+
+    #endregion
+
     // TEMPORARY sacrifice system so I can actually test the script out
     void Update()
     {
@@ -271,5 +289,13 @@ public class ObjectPool : MonoBehaviour
         {
             Sacrifice();
         }
+    }
+
+    public void Sacrifice()
+    {
+        maxBullets += 15;
+        shotgunMaxBullets += 3;
+        maxRockets += 1;
+        Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets + " Current rockets: " + maxRockets);
     }
 }
