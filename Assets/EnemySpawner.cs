@@ -23,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
     GameObject SpawnCircle() 
     {
         GameObject circle = Instantiate(circlePrefab, transform.position, Quaternion.identity);
+        EnemyAI enemyScript = circle.GetComponent<EnemyAI>();
+        enemyScript.moveSpeed = Random.Range(1f, 3f); 
         float direction = transform.position.x > 0 ? -1 : 1;
 
         Rigidbody2D rb = circle.GetComponent<Rigidbody2D>();
