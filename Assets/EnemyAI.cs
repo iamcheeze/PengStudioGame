@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed;
 
     private Rigidbody2D rb;
+    public float horizontal = 1;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -19,9 +20,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Update() {
-        float directionX = Mathf.Sign(player.position.x - transform.position.x); //calculates what direction for enemies to go to (what direction the player is basically)
+    private void Update() 
+    {
+        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+    }
 
-        rb.velocity = new Vector2(directionX * moveSpeed, rb.velocity.y); //
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Barrier"))
+        {
+            horizontal *= -1;
+        }
     }
 }
