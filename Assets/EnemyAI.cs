@@ -10,6 +10,9 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     public float horizontal = 1;
 
+    public float minX = -5f;
+    public float maxX = 5f;
+
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
         
@@ -20,16 +23,34 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Update() 
+    private void Update()
     {
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
-    }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Barrier"))
+        if (transform.position.x <= minX && horizontal < 0)
         {
-            horizontal = -horizontal;
+            horizontal = 1;
+            LookOtherWay();
+        }
+        else if (transform.position.x >= maxX && horizontal > 0)
+        {
+            horizontal = -1;
+            LookOtherWay();
         }
     }
+
+    void LookOtherWay() {
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    // void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.CompareTag("Barrier"))
+    //     {
+    //         horizontal *= -1;
+    //         LookOtherWay();
+    //     }
+    // }
 }
