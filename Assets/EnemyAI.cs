@@ -25,11 +25,11 @@ public class EnemyAI : MonoBehaviour
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Barrier"))
+        if (other.gameObject.CompareTag("Barrier"))
         {
-            horizontal *= -1;
+            horizontal = -horizontal;
         }
     }
 }
