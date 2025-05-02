@@ -17,13 +17,13 @@ TagManager:
   - Player
   - Water
   - UI
-  - IgnoreCollision
+  - Barrier
   - BulletType
   - Enemy
   - PlayerBullet
   - Platform
   - Disabler
-  - 
+  - IgnoreCollision
   - 
   - 
   - 
