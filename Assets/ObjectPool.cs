@@ -281,21 +281,14 @@ public class ObjectPool : MonoBehaviour
     }
 
     #endregion
-
-    // TEMPORARY sacrifice system so I can actually test the script out
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F)) // Change KeyCode as needed
-        {
-            Sacrifice();
-        }
-    }
-
-    public void Sacrifice()
+    #region  Add Bullets
+    
+    public void AddBullets()
     {
         maxBullets += 15;
         shotgunMaxBullets += 3;
         maxRockets += 1;
         Debug.Log("Sacrifice made! Current bullets: " + maxBullets + " Current shotgun bullets: " + shotgunMaxBullets + " Current rockets: " + maxRockets);
     }
+    #endregion
 }

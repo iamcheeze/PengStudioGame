@@ -87,8 +87,6 @@ namespace BarthaSzabolcs.Tutorial_SpriteFlash
             propertyBlock.SetFloat(FlashIntensityID, intensity);
             spriteRenderer.SetPropertyBlock(propertyBlock);
 
-            Debug.Log($"{gameObject.name} - Flash Intensity: {intensity}");
-
             // Pause the execution of this function for "duration" seconds.
             yield return new WaitForSeconds(duration);
 

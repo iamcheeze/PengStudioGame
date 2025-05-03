@@ -6,6 +6,9 @@ using BarthaSzabolcs.Tutorial_SpriteFlash;
 public class EnemyCollision : MonoBehaviour
 {
     public int maxHealth = 100;
+    public float moralityValueOnCure = 10f;
+    public bool wasCured = false;
+
     private int currentHealth;
     private SimpleFlash flashEffect;
     void Start()
@@ -38,8 +41,16 @@ public class EnemyCollision : MonoBehaviour
         if (currentHealth <= 0)
         {
             // To be added: Make sure the game object leaves the list
+            wasCured = true;
             Destroy(gameObject);
             Debug.Log(gameObject.name + " has died.");
+        }
+    }
+    void OnDestroy()
+    {
+        if (wasCured && MoralitySystem.Instance != null)
+        {
+            MoralitySystem.Instance.GainMorality(gameObject);
         }
     }
 }
