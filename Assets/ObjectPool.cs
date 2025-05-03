@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
 
     private int amountToPoolBullet = 12;
     private int amountToPoolShotgunBullet = 17;
-    private int amountToPoolRocket = 5;
+    private int amountToPoolRocket = 2;
     private int amountToPoolTherapyBook = 10;
     private int amountToPoolTherapyMeditate = 10;
     private int amountToPoolTherapyYoga = 10;

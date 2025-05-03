@@ -8,6 +8,7 @@ public class SwitchingWeapon : MonoBehaviour
     public ShotgunLogic shotgunLogic;  // Reference to the ShotgunLogic script
     public RocketLauncherLogic rocketLauncherLogic;  // Reference to the RocketLauncherLogic script
     public TherapyCannonLogic therapyCannonLogic;  // Reference to the TherapyCannonLogic script
+    public GameObject sword;  // Reference to the GameObject sword
     public SpriteRenderer spriteRenderer;  // Reference to the SpriteRenderer component
     public Sprite gunSprite;
     public Sprite shotgunSprite;
@@ -35,6 +36,10 @@ public class SwitchingWeapon : MonoBehaviour
         {
             SwitchToTherapyCannonLogic();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SwitchToSword();
+        }
     }
 
     // Enable GunLogic and disable ShotgunLogic
@@ -58,6 +63,11 @@ public class SwitchingWeapon : MonoBehaviour
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+        }
+
+        if (sword != null)
+        {
+            sword.SetActive(false);  // Deactivate the Sword
         }
 
         if (spriteRenderer != null && gunSprite != null)
@@ -91,6 +101,11 @@ public class SwitchingWeapon : MonoBehaviour
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
         }
 
+        if (sword != null)
+        {
+            sword.SetActive(false);  // Deactivate the Sword
+        }
+
         if (spriteRenderer != null && shotgunSprite != null)
         {
             spriteRenderer.sprite = shotgunSprite; // Sprite switch
@@ -119,6 +134,11 @@ public class SwitchingWeapon : MonoBehaviour
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
         }
 
+        if (sword != null)
+        {
+            sword.SetActive(false);  // Deactivate the Sword
+        }
+
         if (spriteRenderer != null && rocketLauncherSprite != null)
         {
             spriteRenderer.sprite = rocketLauncherSprite; // Sprite switch
@@ -134,7 +154,7 @@ public class SwitchingWeapon : MonoBehaviour
 
         if (shotgunLogic != null)
         {
-            shotgunLogic.enabled = false;  // Enable the ShotgunLogic script
+            shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
         }
 
         if (gunLogic != null)
@@ -147,10 +167,48 @@ public class SwitchingWeapon : MonoBehaviour
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
         }
 
+        if (sword != null)
+        {
+            sword.SetActive(false);  // Deactivate the Sword
+        }
+
         if (spriteRenderer != null && therapyCannonSprite != null)
         {
             spriteRenderer.sprite = therapyCannonSprite; // Sprite switch
         }
         Debug.Log("Switched to TherapyCannonLogic.");
+    }
+    void SwitchToSword()
+    {
+        if (sword != null)
+        {
+            sword.SetActive(true);  // Activate the Sword
+        }
+
+        if (therapyCannonLogic != null)
+        {
+            therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+        }
+
+        if (shotgunLogic != null)
+        {
+            shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+        }
+
+        if (gunLogic != null)
+        {
+            gunLogic.enabled = false;  // Disable the GunLogic script
+        }
+
+        if (rocketLauncherLogic != null)
+        {
+            rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+        }
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sprite = null; // Sprite switch
+        }
+        Debug.Log("Switched to Sword.");
     }
 }

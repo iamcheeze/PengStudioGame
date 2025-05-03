@@ -17,6 +17,11 @@ public class RocketLauncherLogic : MonoBehaviour
 
     private float timeSinceLastShot = 0f;
 
+    void OnEnable()
+    {
+        timeSinceLastShot = shootDelay - 0.5f;
+    }
+
     void Update()
     {
         timeSinceLastShot += Time.deltaTime;

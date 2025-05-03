@@ -10,6 +10,7 @@ TagManager:
   - Floating Barrier
   - Enemy
   - BulletType
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Platform
   - Disabler
   - IgnoreCollision
-  - 
+  - Sword
   - 
   - 
   - 

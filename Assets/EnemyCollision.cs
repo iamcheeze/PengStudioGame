@@ -11,19 +11,34 @@ public class EnemyCollision : MonoBehaviour
 
     private int currentHealth;
     private SimpleFlash flashEffect;
+
+    public float swordHitCooldown = 0.5f;
+    private float lastSwordHitTime = -Mathf.Infinity;
     void Start()
     {
         currentHealth = maxHealth;
         flashEffect = GetComponent<SimpleFlash>();
     }
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        BulletInfo bullet = other.GetComponent<BulletInfo>();
-        if (bullet != null)
+        // Only deactivate if it's a real bullet
+        if (other.gameObject.layer == LayerMask.NameToLayer("BulletType") || other.CompareTag("BulletType"))
         {
-            TakeDamage(bullet.damage);
-            other.gameObject.SetActive(false);
+            BulletInfo bullet = other.GetComponent<BulletInfo>();
+            if (bullet != null)
+            {
+                TakeDamage(bullet.damage);
+                other.gameObject.SetActive(false);
+                return;
+            }
+        }
+
+        // Sword check
+        SwordLogic sword = other.GetComponent<SwordLogic>();
+        if (sword != null && Time.time >= lastSwordHitTime + swordHitCooldown)
+        {
+            TakeDamage(sword.damage);
+            lastSwordHitTime = Time.time;
         }
     }
 
