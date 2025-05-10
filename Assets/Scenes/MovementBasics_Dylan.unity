@@ -232,8 +232,8 @@ Transform:
   m_GameObject: {fileID: 213440150}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.18, y: 3.5422, z: 0}
-  m_LocalScale: {x: 0.14772262, y: 17.050726, z: 1}
+  m_LocalPosition: {x: -12.38, y: 3.5422, z: 0}
+  m_LocalScale: {x: 0.10045138, y: 17.050726, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -423,8 +423,8 @@ Transform:
   m_GameObject: {fileID: 258795907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.051, y: -4.6451, z: 0}
-  m_LocalScale: {x: 24.194777, y: 0.7294, z: 1}
+  m_LocalPosition: {x: 0.0245, y: -4.6451, z: 0}
+  m_LocalScale: {x: 25.041597, y: 0.7294, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 342094152}
@@ -553,7 +553,7 @@ Transform:
   m_GameObject: {fileID: 272876307}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.2, y: 3.6728, z: 0}
+  m_LocalPosition: {x: 12.43, y: 3.64, z: 0}
   m_LocalScale: {x: 0.14772262, y: 17.265118, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1590,6 +1590,7 @@ GameObject:
   - component: {fileID: 974904736}
   - component: {fileID: 974904735}
   - component: {fileID: 974904734}
+  - component: {fileID: 974904737}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1671,6 +1672,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &974904737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974904733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189ee39c48dc04a30b08af1f2686789a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 482260197}
+  followSpeed: 2
+  followOffset: {x: 1, y: 1}
+  minBounds: {x: -12, y: -6}
+  maxBounds: {x: 12, y: 6}
 --- !u!1 &1009284716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1813,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  moralityValueOnCure: 10
+  wasCured: 0
+  swordHitCooldown: 0.5
 --- !u!61 &1022794800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2052,7 +2073,7 @@ Transform:
   m_GameObject: {fileID: 1210270889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.82, z: 0}
+  m_LocalPosition: {x: 0, y: 7.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2304,6 +2325,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 79492332292324028, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
+      propertyPath: m_margin.x
+      value: -274.5982
+      objectReference: {fileID: 0}
     - target: {fileID: 6123478133583428431, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
       propertyPath: m_Name
       value: waveText
@@ -2370,11 +2395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8919097958995063503, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -262.88
+      value: -10.6
       objectReference: {fileID: 0}
     - target: {fileID: 8919097958995063503, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -192.25
+      value: 5.71
       objectReference: {fileID: 0}
     - target: {fileID: 8919097958995063503, guid: 71d50e42ebd324bad88cb58865d7d92e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2669,6 +2694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  moralityValueOnCure: 10
+  wasCured: 0
+  swordHitCooldown: 0.5
 --- !u!50 &1574307641
 Rigidbody2D:
   serializedVersion: 4
@@ -2858,6 +2886,7 @@ MonoBehaviour:
   shotgunLogic: {fileID: 1641534296}
   rocketLauncherLogic: {fileID: 1641534300}
   therapyCannonLogic: {fileID: 1641534301}
+  sword: {fileID: 0}
   spriteRenderer: {fileID: 1641534297}
   gunSprite: {fileID: 21300000, guid: 266c1177711132744817df8753a718b2, type: 3}
   shotgunSprite: {fileID: 21300000, guid: 4f7449890fa6ebe4db96e6f26c4c8453, type: 3}
