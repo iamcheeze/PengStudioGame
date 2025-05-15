@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: af430de0aa24b42438d50b5c52c3ee22
+guid: be44d307e3e2a49faaf41b051818f443
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - bloodEffectPrefab: {fileID: 4279411908320216876, guid: 2edcf1021e79e424eb136e06f8a1c579, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -26,8 +26,8 @@ TagManager:
   - Disabler
   - IgnoreCollision
   - Sword
-  - 
-  - 
+  - EdgeTrigger
+  - PlayerBorder
   - 
   - 
   - 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloatingPlatformRight : MonoBehaviour
 {
-    [SerializeField] private float speed = -2f;
+    public float speed = -2f;
     [SerializeField] private float resetX = -10f;
     [SerializeField] private float rightBound = 10f;
 
@@ -48,20 +48,28 @@ public class FloatingPlatformRight : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("Player") || collision.transform.CompareTag("Enemy"))
+        if (collision.transform.CompareTag("Player"))
         {
             if (!passengers.Contains(collision.transform))
             {
                 passengers.Add(collision.transform);
             }
         }
-    }
+        if (collision.transform.CompareTag("Enemy"))
+        {  
+            // Parent the object to the platform
+            collision.transform.SetParent(transform);
+        }
+    } 
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (passengers != null)
+        passengers.Remove(collision.transform);
+
+        // Unparent the object
+        if (collision.transform.parent == transform)
         {
-            passengers.Remove(collision.transform);
+            collision.transform.SetParent(null);
         }
     }
 }

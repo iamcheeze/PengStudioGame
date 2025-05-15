@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3342567121868222702}
   - component: {fileID: 1535161394003133323}
   - component: {fileID: -8385947412231826944}
+  - component: {fileID: -4940084058866119413}
   m_Layer: 8
   m_Name: Crawler
   m_TagString: Enemy
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 122
   m_Sprite: {fileID: -2413806693520163455, guid: 49a06ae4a714747a9a13d22cf0feb3db, type: 3}
   m_Color: {r: 0.38963127, g: 0.6037736, b: 0.35599858, a: 1}
   m_FlipX: 0
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &3342567121868222702
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -165,6 +166,7 @@ MonoBehaviour:
   maxHealth: 100
   moralityValueOnCure: 10
   wasCured: 0
+  swordHitCooldown: 0.5
 --- !u!114 &-8385947412231826944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +182,16 @@ MonoBehaviour:
   duration: 0.2
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashMaterial: {fileID: 2100000, guid: 2a748cf8537a049a2b8acd4e71704238, type: 2}
+--- !u!114 &-4940084058866119413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991308700113237408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d81e36805254fb6bbd2809f9e74feb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2

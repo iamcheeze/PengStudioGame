@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 258795909}
   - component: {fileID: 258795908}
   - component: {fileID: 258795910}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -4.509827, z: 0}
-  m_LocalScale: {x: 20, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 342094152}
@@ -338,7 +338,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &342094151
 GameObject:
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af430de0aa24b42438d50b5c52c3ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMorality: 93.7
+  maxMorality: 100
   currentMorality: 0
   moralityDrainPerSecond: 2
   sacrificeMoralityDrain: 20
@@ -725,7 +725,8 @@ MonoBehaviour:
   fillBar: {fileID: 529255539}
   lagBar: {fileID: 434663002}
   fillBarRenderer: {fileID: 529255538}
-  maxWidth: 20
+  lagBarRenderer: {fileID: 434663001}
+  maxWidth: 18
   lagSpeed: 4
   lowMoralityThreshold: 0.3
   pulseSpeed: 3
@@ -954,6 +955,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4940084058866119413, guid: 6e3d82bfcda124888bf3f851c1f3f169, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5380540544607188219, guid: 6e3d82bfcda124888bf3f851c1f3f169, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.04
@@ -2333,6 +2338,10 @@ MonoBehaviour:
   shotgunIcon: {fileID: 2800000, guid: 0d6a45042624f488d96c992ebe85f867, type: 3}
   rocketIcon: {fileID: 2800000, guid: 642eeb03ded42493bbf1f5fb667aa3cf, type: 3}
   therapyIcon: {fileID: 2800000, guid: f8248e37d9c414d0987b501ab35e43b3, type: 3}
+  Bullet: {r: 0.92, g: 0.945, b: 0.27, a: 1}
+  ShotgunBullet: {r: 1, g: 0, b: 0.053719044, a: 1}
+  Rocket: {r: 0.05, g: 0.7, b: 0.13, a: 1}
+  Therapy: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1664780486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,6 +2653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1837146974}
   - component: {fileID: 1837146975}
+  - component: {fileID: 1837146976}
   m_Layer: 0
   m_Name: ObjectPool
   m_TagString: Untagged
@@ -2688,6 +2698,20 @@ MonoBehaviour:
   shotgunMaxBullets: 3
   maxRockets: 1
   maxTherapy: 0
+--- !u!114 &1837146976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837146972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a61848a1420411aa07537bb25a3d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edgeYOffset: 0.2
+  groundPlatform: {fileID: 258795907}
 --- !u!1001 &2047899597
 PrefabInstance:
   m_ObjectHideFlags: 0
