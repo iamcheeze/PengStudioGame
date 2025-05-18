@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 //Dylan Ashraf; gnarly.lace
@@ -18,16 +19,30 @@ public class spawningSystem : MonoBehaviour
     public List<GameObject> aliveEnemies = new List<GameObject>();
     public List<EnemySpawner> EnemySpawners;
 
-    private void Awake() {
-        if (enemySpawner != null) {
+    public MoralitySystem mS;
+
+    private void Awake()
+    {
+        if (enemySpawner != null)
+        {
             enemySpawner.spawningSystem = this;
         }
     }
 
-    private void Update() {
+    private void Update()
+    {
         //starts wave if one isnt running and no enemies are alive according to list
-        if (waveActive == false && aliveEnemies.Count == 0) {
+        if (waveActive == false && aliveEnemies.Count == 0)
+        {
             StartNewWave();
+        }
+
+        for (int i = 0; i < aliveEnemies.Count; i++)
+        {
+            if (aliveEnemies[i] == null)
+            {
+                aliveEnemies.RemoveAt(i);
+            }
         }
     }
 
@@ -38,6 +53,8 @@ public class spawningSystem : MonoBehaviour
         enemiesToSpawn = Mathf.FloorToInt(enemiesToSpawn * 1.5f);
         enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies);
         waveNumber++;
+
+        mS.moralityDrainPerSecond *= 2f;
 
         aliveEnemies.Clear();
 

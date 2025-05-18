@@ -7,9 +7,14 @@ public class RocketBehavior : MonoBehaviour
     public RocketLauncherLogic launcher;
     private bool hasExploded = false;
 
+    public Animator canim;
+    public Animator canim2;
+
     void Start()
     {
         launcher = FindObjectOfType<RocketLauncherLogic>();
+        canim = GameObject.Find("Main Camera").GetComponent<Animator>();
+        canim2 = GameObject.Find("Camera Duplicate").GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -21,6 +26,8 @@ public class RocketBehavior : MonoBehaviour
     {
         if (!hasExploded && other.CompareTag("Enemy") && launcher != null)
         {
+            canim.Play("CameraShake");
+            canim2.Play("CameraShake");
             hasExploded = true;
             launcher.ExplodeAt(transform.position);
             gameObject.SetActive(false);

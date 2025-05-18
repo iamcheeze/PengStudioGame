@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 1535161394003133323}
   - component: {fileID: -8385947412231826944}
   - component: {fileID: -4940084058866119413}
+  - component: {fileID: 3694929253278377348}
+  - component: {fileID: 247028635732992441}
   m_Layer: 8
   m_Name: Crawler
   m_TagString: Enemy
@@ -77,10 +79,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 122
-  m_Sprite: {fileID: -2413806693520163455, guid: 49a06ae4a714747a9a13d22cf0feb3db, type: 3}
-  m_Color: {r: 0.38963127, g: 0.6037736, b: 0.35599858, a: 1}
-  m_FlipX: 0
+  m_SortingOrder: 111
+  m_Sprite: {fileID: 1915077255, guid: 12d6a521db53c42ee960baf6d4273d95, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -167,6 +169,7 @@ MonoBehaviour:
   moralityValueOnCure: 10
   wasCured: 0
   swordHitCooldown: 0.5
+  r3S: {fileID: 247028635732992441}
 --- !u!114 &-8385947412231826944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,3 +198,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+--- !u!114 &3694929253278377348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991308700113237408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce71eac6c33e84d149ece86b4f71d04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  moveSpeed: 0
+  horizontal: 1
+  minX: -5
+  maxX: 5
+--- !u!114 &247028635732992441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991308700113237408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ce7b1f4e60f4c76a7765d2723d9ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 1915077255, guid: 12d6a521db53c42ee960baf6d4273d95, type: 3}
+  - {fileID: 359710161, guid: 12d6a521db53c42ee960baf6d4273d95, type: 3}
+  - {fileID: -34868875, guid: 12d6a521db53c42ee960baf6d4273d95, type: 3}
+  particles:
+  - {fileID: 3284667274526901287, guid: f51c072505f334991a6d42178edcb656, type: 3}
+  - {fileID: 3284667274526901287, guid: 3adc17bd7813f4b3e8609ead874e0e30, type: 3}
+  - {fileID: 3284667274526901287, guid: 3d3fa56459d514caab72cd6452dc8fdf, type: 3}
+  sR: {fileID: 7817131021509525221}
+  particle: {fileID: 0}

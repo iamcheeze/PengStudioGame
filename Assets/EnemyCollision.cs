@@ -14,10 +14,18 @@ public class EnemyCollision : MonoBehaviour
 
     public float swordHitCooldown = 0.5f;
     private float lastSwordHitTime = -Mathf.Infinity;
+
+    public Random3Sprite r3S;
+    public Animator canim;
+    public Animator canim2;
+
     void Start()
     {
         currentHealth = maxHealth;
         flashEffect = GetComponent<SimpleFlash>();
+
+        canim = GameObject.Find("Main Camera").GetComponent<Animator>();
+        canim2 = GameObject.Find("Camera Duplicate").GetComponent<Animator>();
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -27,6 +35,9 @@ public class EnemyCollision : MonoBehaviour
             BulletInfo bullet = other.GetComponent<BulletInfo>();
             if (bullet != null)
             {
+                Instantiate(r3S.particle, transform.position, transform.rotation);
+                canim.Play("CameraShake");
+                canim2.Play("CameraShake");
                 TakeDamage(bullet.damage);
                 other.gameObject.SetActive(false);
                 return;
