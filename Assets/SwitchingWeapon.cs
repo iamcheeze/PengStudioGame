@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwitchingWeapon : MonoBehaviour
 {
@@ -14,6 +17,9 @@ public class SwitchingWeapon : MonoBehaviour
     public Sprite shotgunSprite;
     public Sprite rocketLauncherSprite;
     public Sprite therapyCannonSprite;
+
+    public Image[] images;
+    public TextMeshProUGUI[] texts;
 
     private void Update()
     {
@@ -48,21 +54,30 @@ public class SwitchingWeapon : MonoBehaviour
         if (gunLogic != null)
         {
             gunLogic.enabled = true;  // Enable the GunLogic script
+            images[0].color = new Color(1f, 1f, 1f, 1f);
+            texts[0].color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+            images[1].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[1].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+            images[2].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[2].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+            images[3].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[3].color = new Color(1f, 1f, 1f, 0.5f);
+            images[4].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (sword != null)
@@ -84,21 +99,30 @@ public class SwitchingWeapon : MonoBehaviour
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = true;  // Enable the ShotgunLogic script
+            images[1].color = new Color(1f, 1f, 1f, 1f);
+            texts[1].color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (gunLogic != null)
         {
             gunLogic.enabled = false;  // Disable the GunLogic script
+            images[0].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[0].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+            images[2].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[2].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+            images[3].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[3].color = new Color(1f, 1f, 1f, 0.5f);
+            images[4].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (sword != null)
@@ -117,21 +141,30 @@ public class SwitchingWeapon : MonoBehaviour
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = true;  // Enable the RocketLauncherLogic script
+            images[2].color = new Color(1f, 1f, 1f, 1f);
+            texts[2].color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+            images[1].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[1].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (gunLogic != null)
         {
             gunLogic.enabled = false;  // Disable the GunLogic script
+            images[0].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[0].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+            images[3].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[3].color = new Color(1f, 1f, 1f, 0.5f);
+            images[4].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (sword != null)
@@ -150,21 +183,30 @@ public class SwitchingWeapon : MonoBehaviour
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = true;  // Enable the TherapyCannonLogic script
+            images[3].color = new Color(1f, 1f, 1f, 1f);
+            texts[3].color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+            images[1].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[1].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (gunLogic != null)
         {
             gunLogic.enabled = false;  // Disable the GunLogic script
+            images[0].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[0].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+            images[2].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[2].color = new Color(1f, 1f, 1f, 0.5f);
+            images[4].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (sword != null)
@@ -183,26 +225,35 @@ public class SwitchingWeapon : MonoBehaviour
         if (sword != null)
         {
             sword.SetActive(true);  // Activate the Sword
+            images[4].color = new Color(1f, 1f, 1f, 1f);
         }
 
         if (therapyCannonLogic != null)
         {
             therapyCannonLogic.enabled = false;  // Disable the TherapyCannonLogic script
+            images[3].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[3].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (shotgunLogic != null)
         {
             shotgunLogic.enabled = false;  // Disable the ShotgunLogic script
+            images[1].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[1].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (gunLogic != null)
         {
             gunLogic.enabled = false;  // Disable the GunLogic script
+            images[2].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[2].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (rocketLauncherLogic != null)
         {
             rocketLauncherLogic.enabled = false;  // Disable the RocketLauncherLogic script
+            images[0].color = new Color(1f, 1f, 1f, 0.5f);
+            texts[0].color = new Color(1f, 1f, 1f, 0.5f);
         }
 
         if (spriteRenderer != null)

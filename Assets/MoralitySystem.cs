@@ -14,6 +14,9 @@ public class MoralitySystem : MonoBehaviour
 
     public static MoralitySystem Instance;
 
+    public GameObject death;
+    public Animator anim;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -24,6 +27,7 @@ public class MoralitySystem : MonoBehaviour
     void Start()
     {
         currentMorality = maxMorality;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -47,9 +51,9 @@ public class MoralitySystem : MonoBehaviour
     {
         if (currentMorality <= 0f)
         {
-            Debug.Log("Player died LMAO.");
-            // Add death logic here || Replace whatever I put here cuz idk what I'm doing
-            SceneManager.LoadScene("DeathScreen");
+            death.SetActive(true);
+            anim.Play("PlayerDeath");
+            Time.timeScale = 0f;
         }
     }
 

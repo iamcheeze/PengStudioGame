@@ -11,7 +11,7 @@ public class spawningSystem : MonoBehaviour
     public EnemySpawner enemySpawner;
     public TextMeshProUGUI waveText;
 
-    private int waveNumber = 1;
+    public int waveNumber = 1;
     private int enemiesToSpawn = 3;
     private bool waveActive = false;
     private const int maxEnemies = 50;
