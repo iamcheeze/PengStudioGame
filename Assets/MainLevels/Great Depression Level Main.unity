@@ -2433,7 +2433,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -63
   m_Sprite: {fileID: 7482667652216324306, guid: 801938306f23a8846a24cc0eec3823b8, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.89411765}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.7607843}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6381,6 +6381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1981169686}
   - component: {fileID: 1981169687}
+  - component: {fileID: 1981169688}
   m_Layer: 0
   m_Name: Death Screen
   m_TagString: Untagged
@@ -6457,6 +6458,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1981169688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981169685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1dc95d42a09a4a3baf7188548867db2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Great Depression Level Main
 --- !u!1 &2025507469
 GameObject:
   m_ObjectHideFlags: 0
@@ -6562,7 +6576,7 @@ MonoBehaviour:
   input: 323
   spawnpoint: {fileID: 614651197}
   rocketSpeed: 10
-  shootDelay: 0.5
+  shootDelay: 0.2
   rocketLifeTime: 2
   timeBeforeLaunch: 1
   explosionRadius: 2

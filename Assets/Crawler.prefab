@@ -165,11 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1af7b8c8d601440a852e3fa3f15976b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   moralityValueOnCure: 10
   wasCured: 0
   swordHitCooldown: 0.5
   r3S: {fileID: 247028635732992441}
+  canim: {fileID: 0}
+  canim2: {fileID: 0}
 --- !u!114 &-8385947412231826944
 MonoBehaviour:
   m_ObjectHideFlags: 0

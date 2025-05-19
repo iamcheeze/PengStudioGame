@@ -54,7 +54,7 @@ public class spawningSystem : MonoBehaviour
         enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies);
         waveNumber++;
 
-        mS.moralityDrainPerSecond *= 2f;
+        mS.moralityDrainPerSecond *= 1.5f;
 
         aliveEnemies.Clear();
 
