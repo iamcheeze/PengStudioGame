@@ -53,6 +53,7 @@ public class MoralitySystem : MonoBehaviour
         {
             death.SetActive(true);
             anim.Play("PlayerDeath");
+            Destroy(GameObject.Find("ThemePlayer"));
             Time.timeScale = 0f;
         }
     }

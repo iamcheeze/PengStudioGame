@@ -6,12 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/MainLevels/MainMenu.unity
+    guid: 972706f948ab94d469ce03400193c554
+  - enabled: 1
+    path: Assets/MainLevels/LevelSelector.unity
+    guid: 3db694ff33f1043aaa82c9152abbc450
   - enabled: 1
     path: Assets/Scenes/DeathScreen.unity
     guid: 20279c56a4dc94a0d9c26c3f5b352b70
   - enabled: 1
     path: Assets/MainLevels/Great Depression Level Main.unity
     guid: eefc6e4ff8f1441a6bf9e4488f0fadf9
+  - enabled: 1
+    path: Assets/MainLevels/Covid Era Level Main.unity
+    guid: 5b137a4d455804de1a491eb27a3ceace
+  - enabled: 1
+    path: Assets/MainLevels/Medieval Level Main.unity
+    guid: c245d6d62a5f04c6189803274a8961e3
   m_configObjects: {}

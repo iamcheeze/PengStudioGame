@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelOne : MonoBehaviour
 {
-    public void LoadOne () {
-        SceneManager.LoadScene("Level1");
+    public void LoadOne () 
+    {
+        SceneManager.LoadScene("Medieval Level Main");
     }
 }

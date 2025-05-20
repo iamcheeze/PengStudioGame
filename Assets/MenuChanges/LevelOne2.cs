@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelOne2 : MonoBehaviour
 {
     public void LoadThree () {
-        SceneManager.LoadScene("Level3");
+        SceneManager.LoadScene("Covid Era Level Main");
     }
 }

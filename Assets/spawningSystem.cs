@@ -11,6 +11,8 @@ public class spawningSystem : MonoBehaviour
     public EnemySpawner enemySpawner;
     public TextMeshProUGUI waveText;
 
+    public AudioSource wave;
+
     public int waveNumber = 1;
     private int enemiesToSpawn = 3;
     private bool waveActive = false;
@@ -53,6 +55,7 @@ public class spawningSystem : MonoBehaviour
         enemiesToSpawn = Mathf.FloorToInt(enemiesToSpawn * 1.5f);
         enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemies);
         waveNumber++;
+        wave.Play();
 
         mS.moralityDrainPerSecond *= 1.5f;
 

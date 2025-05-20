@@ -18,9 +18,11 @@ public class EnemyCollision : MonoBehaviour
     public Random3Sprite r3S;
     public Animator canim;
     public Animator canim2;
+    public AudioSource source;
 
     void Start()
     {
+        source = GameObject.Find("death").GetComponent<AudioSource>();
         currentHealth = maxHealth;
         flashEffect = GetComponent<SimpleFlash>();
 
@@ -68,6 +70,7 @@ public class EnemyCollision : MonoBehaviour
         {
             // To be added: Make sure the game object leaves the list
             wasCured = true;
+            source.Play();
             Destroy(gameObject);
             Debug.Log(gameObject.name + " has died.");
         }

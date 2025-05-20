@@ -10,5 +10,10 @@ public class MoralityKiller : MonoBehaviour
         {
             other.GetComponent<MoralitySystem>().currentMorality = 0;
         }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

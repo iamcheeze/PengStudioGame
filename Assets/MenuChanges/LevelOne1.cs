@@ -6,6 +6,6 @@ using UnityEngine.SceneManagement;
 public class LevelOne1 : MonoBehaviour
 {
     public void LoadTwo () {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Great Depression Level Main");
     }
 }

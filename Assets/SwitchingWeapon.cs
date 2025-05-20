@@ -18,6 +18,8 @@ public class SwitchingWeapon : MonoBehaviour
     public Sprite rocketLauncherSprite;
     public Sprite therapyCannonSprite;
 
+    public AudioSource s;
+
     public Image[] images;
     public TextMeshProUGUI[] texts;
 
@@ -27,24 +29,29 @@ public class SwitchingWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchToGunLogic();
+            s.Play();
         }
         // Switch to ShotgunLogic (2 key press)
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SwitchToShotgunLogic();
+            s.Play();
         }
         // Switch to ShotgunLogic (3 key press)
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchToRocketLauncherLogic();
+            s.Play();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             SwitchToTherapyCannonLogic();
+            s.Play();
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             SwitchToSword();
+            s.Play();
         }
     }
 

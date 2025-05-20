@@ -14,5 +14,10 @@ public class FinishIt : MonoBehaviour
         {
             SceneManager.LoadScene(sceneName);
         }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }
